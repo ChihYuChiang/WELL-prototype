@@ -1,0 +1,7 @@
+# Distribution / packaging
+.vs/
+bin/
+data/
+img/
+obj/
+properties/
