@@ -23,6 +23,9 @@ namespace WellPt
         public MainWindow()
         {
             InitializeComponent();
+
+            Storyboard sb = (this.FindResource("sbAnimateImage2") as Storyboard);
+            sb.Begin();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
