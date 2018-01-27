@@ -1,0 +1,15 @@
+D:\OneDrive\GitHub\WELL-prototype\WellPt\bin\Debug\WellPt.exe.config
+D:\OneDrive\GitHub\WELL-prototype\WellPt\bin\Debug\WellPt.exe
+D:\OneDrive\GitHub\WELL-prototype\WellPt\bin\Debug\WellPt.pdb
+D:\OneDrive\GitHub\WELL-prototype\WellPt\obj\Debug\WellPt.csprojResolveAssemblyReference.cache
+D:\OneDrive\GitHub\WELL-prototype\WellPt\obj\Debug\MainWindow.g.cs
+D:\OneDrive\GitHub\WELL-prototype\WellPt\obj\Debug\App.g.cs
+D:\OneDrive\GitHub\WELL-prototype\WellPt\obj\Debug\WellPt_MarkupCompile.cache
+D:\OneDrive\GitHub\WELL-prototype\WellPt\obj\Debug\WellPt_MarkupCompile.lref
+D:\OneDrive\GitHub\WELL-prototype\WellPt\obj\Debug\MainWindow.baml
+D:\OneDrive\GitHub\WELL-prototype\WellPt\obj\Debug\WellPt.g.resources
+D:\OneDrive\GitHub\WELL-prototype\WellPt\obj\Debug\WellPt.Properties.Resources.resources
+D:\OneDrive\GitHub\WELL-prototype\WellPt\obj\Debug\WellPt.csproj.GenerateResource.Cache
+D:\OneDrive\GitHub\WELL-prototype\WellPt\obj\Debug\WellPt.csproj.CoreCompileInputs.cache
+D:\OneDrive\GitHub\WELL-prototype\WellPt\obj\Debug\WellPt.exe
+D:\OneDrive\GitHub\WELL-prototype\WellPt\obj\Debug\WellPt.pdb
