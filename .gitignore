@@ -5,3 +5,5 @@ data/
 img/
 obj/
 properties/
+packages/
+*.config
