@@ -19,6 +19,7 @@
     TextOptions.TextRenderingMode="Auto"
     mc:Ignorable="d">
     <Window.Resources>
+        <Storyboard x:Key="story" FillBehavior="HoldEnd" />
         <Storyboard x:Key="sbAnimateImage">
             <DoubleAnimation
                 AccelerationRatio="0.6"
@@ -54,6 +55,7 @@
                     Fill="#FFF4F4F5"
                     Stroke="Black" />
             </Canvas>
+            <TextBlock x:Name="txtb" TextWrapping="Wrap">place holder</TextBlock>
         </StackPanel>
     </Grid>
 </Window>
