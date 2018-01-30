@@ -38,34 +38,7 @@ namespace WellPt
         private void Button_Click1(object sender, RoutedEventArgs e)
         {
             string t = "this is a testing string message.  is a testing string message.";
-            TypewriteTextblock(t, txtb, new TimeSpan(0, 0, 0, 0, t.Length / 10 * 1000));
-        }
-
-        private void TypewriteTextblock(string textToAnimate, TextBlock txt, TimeSpan timeSpan)
-        {
-            Storyboard sb2 = this.FindResource("bindicate") as Storyboard;
-            sb2.Stop();
-
-            DiscreteStringKeyFrame discreteStringKeyFrame;
-            StringAnimationUsingKeyFrames stringAnimationUsingKeyFrames = new StringAnimationUsingKeyFrames();
-            stringAnimationUsingKeyFrames.Duration = new Duration(timeSpan);
-
-            string tmp = string.Empty;
-            foreach (char c in textToAnimate)
-            {
-                discreteStringKeyFrame = new DiscreteStringKeyFrame();
-                discreteStringKeyFrame.KeyTime = KeyTime.Paced;
-                tmp += c;
-                discreteStringKeyFrame.Value = tmp;
-                stringAnimationUsingKeyFrames.KeyFrames.Add(discreteStringKeyFrame);
-            }
-            Storyboard.SetTargetName(stringAnimationUsingKeyFrames, txt.Name);
-            Storyboard.SetTargetProperty(stringAnimationUsingKeyFrames, new PropertyPath(TextBlock.TextProperty));
-
-            Storyboard sb = this.FindResource("story") as Storyboard;
-            sb.Children.Add(stringAnimationUsingKeyFrames);
-
-            sb.Begin(txt);
+            Util.TypewriteTextblock(this, t, txtb, new TimeSpan(0, 0, 0, 0, t.Length / 10 * 1000));
         }
 
         private void storyCompleted(object sender, EventArgs e)
