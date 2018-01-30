@@ -7,3 +7,4 @@ obj/
 properties/
 packages/
 *.config
+*.csproj
