@@ -19,7 +19,21 @@
     TextOptions.TextRenderingMode="Auto"
     mc:Ignorable="d">
     <Window.Resources>
-        <Storyboard x:Key="story" FillBehavior="HoldEnd" />
+        <Storyboard
+            x:Key="story"
+            Completed="storyCompleted"
+            FillBehavior="HoldEnd" />
+        <Storyboard x:Key="bindicate">
+            <DoubleAnimation
+                AccelerationRatio="0.9"
+                AutoReverse="True"
+                RepeatBehavior="Forever"
+                Storyboard.TargetName="bindi"
+                Storyboard.TargetProperty="Opacity"
+                From="0"
+                To="100"
+                Duration="00:00:00.60" />
+        </Storyboard>
         <Storyboard x:Key="sbAnimateImage">
             <DoubleAnimation
                 AccelerationRatio="0.6"
@@ -45,6 +59,13 @@
                 VerticalAlignment="Top"
                 Click="Button_Click"
                 Content="Button" />
+            <Button
+                Width="75"
+                Margin="50,10,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Click="Button_Click1"
+                Content="Type" />
             <Canvas>
                 <Rectangle
                     x:Name="gogogo"
@@ -56,6 +77,12 @@
                     Stroke="Black" />
             </Canvas>
             <TextBlock x:Name="txtb" TextWrapping="Wrap">place holder</TextBlock>
+            <Rectangle
+                x:Name="bindi"
+                Width="5"
+                Height="5"
+                Fill="{DynamicResource {x:Static SystemColors.MenuHighlightBrushKey}}"
+                Opacity="0" />
         </StackPanel>
     </Grid>
 </Window>

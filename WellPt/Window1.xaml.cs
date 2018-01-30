@@ -24,8 +24,8 @@ namespace WellPt
             Storyboard sb = this.FindResource("sbAnimateImage") as Storyboard;
             sb.Begin();
 
-            string t = "this is a testing string message.  is a testing string message.";
-            TypewriteTextblock(t, txtb, new TimeSpan(0, 0, 0, 0, t.Length / 10 * 1000));
+            Storyboard sb2 = this.FindResource("bindicate") as Storyboard;
+            sb2.Begin();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -35,8 +35,17 @@ namespace WellPt
             this.Close();
         }
 
+        private void Button_Click1(object sender, RoutedEventArgs e)
+        {
+            string t = "this is a testing string message.  is a testing string message.";
+            TypewriteTextblock(t, txtb, new TimeSpan(0, 0, 0, 0, t.Length / 10 * 1000));
+        }
+
         private void TypewriteTextblock(string textToAnimate, TextBlock txt, TimeSpan timeSpan)
         {
+            Storyboard sb2 = this.FindResource("bindicate") as Storyboard;
+            sb2.Stop();
+
             DiscreteStringKeyFrame discreteStringKeyFrame;
             StringAnimationUsingKeyFrames stringAnimationUsingKeyFrames = new StringAnimationUsingKeyFrames();
             stringAnimationUsingKeyFrames.Duration = new Duration(timeSpan);
@@ -57,6 +66,12 @@ namespace WellPt
             sb.Children.Add(stringAnimationUsingKeyFrames);
 
             sb.Begin(txt);
+        }
+
+        private void storyCompleted(object sender, EventArgs e)
+        {
+            Storyboard sb = this.FindResource("bindicate") as Storyboard;
+            sb.Begin();
         }
     }
 }
