@@ -18,6 +18,18 @@
     TextOptions.TextFormattingMode="Ideal"
     TextOptions.TextRenderingMode="Auto"
     mc:Ignorable="d">
+    <Window.Resources>
+        <Storyboard x:Key="sbAnimateImage">
+            <DoubleAnimation
+                AccelerationRatio="0.6"
+                AutoReverse="True"
+                By="15"
+                RepeatBehavior="Forever"
+                Storyboard.TargetName="gogogo"
+                Storyboard.TargetProperty="(Canvas.Left)"
+                Duration="00:00:00.50" />
+        </Storyboard>
+    </Window.Resources>
     <Grid>
         <StackPanel>
             <wpf:ChromiumWebBrowser
@@ -32,6 +44,16 @@
                 VerticalAlignment="Top"
                 Click="Button_Click"
                 Content="Button" />
+            <Canvas>
+                <Rectangle
+                    x:Name="gogogo"
+                    Canvas.Left="400"
+                    Width="96"
+                    Height="31"
+                    HorizontalAlignment="Center"
+                    Fill="#FFF4F4F5"
+                    Stroke="Black" />
+            </Canvas>
         </StackPanel>
     </Grid>
 </Window>
