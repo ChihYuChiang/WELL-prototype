@@ -15,9 +15,9 @@ using System.Windows.Media.Animation;
 
 namespace WellPt
 {
-    public partial class Window1 : Window
+    public partial class Window_Entrance : Window
     {
-        public Window1()
+        public Window_Entrance()
         {
             InitializeComponent();
 
@@ -30,7 +30,7 @@ namespace WellPt
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow main = new MainWindow();
+            Window_Main main = new Window_Main();
             main.Show();
             this.Close();
         }

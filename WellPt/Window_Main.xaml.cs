@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 
 namespace WellPt
 {
-    public partial class MainWindow : Window
+    public partial class Window_Main : Window
     {
         private QItem dItem = new QItem(1);
 
-        public MainWindow()
+        public Window_Main()
         {
             InitializeComponent();
 
@@ -33,6 +33,13 @@ namespace WellPt
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            if(dItem.Id == Util.qBook.Count - 1)
+            {
+                Window_Notification note = new Window_Notification("hello");
+                note.Show();
+                return;
+            }
+            
             Storyboard sb = (this.FindResource("sbAnimateImage") as Storyboard);
             sb.Begin();
 
