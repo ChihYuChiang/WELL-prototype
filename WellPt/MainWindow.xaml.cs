@@ -27,7 +27,7 @@ namespace WellPt
             Storyboard sb = (this.FindResource("sbAnimateImage2") as Storyboard);
             sb.Begin();
 
-            Binding myBinding = new Binding("Prompt") { Source = dItem, Mode = BindingMode.OneWay };
+            Binding myBinding = new Binding("Prompt") { Source = dItem, Mode = BindingMode.OneWay, Converter = new Converter_PromptId() };
             BindingOperations.SetBinding(ui_dItem_prompt, Label.ContentProperty, myBinding);
         }
 

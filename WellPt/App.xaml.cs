@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Data;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
 using System.IO;
@@ -108,6 +109,22 @@ namespace WellPt
         public void NotifyPropertyChanged(string propName)
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
+        }
+    }
+
+
+    public class Converter_PromptId : IValueConverter
+    {
+        public object Convert(object value, Type targetType,
+                              object parameter, System.Globalization.CultureInfo culture)
+        {
+            return "Q" + value + " of " + (Util.qBook.Count - 1).ToString();
+        }
+
+        public object ConvertBack(object value, Type targetType,
+                                  object parameter, System.Globalization.CultureInfo culture)
+        {
+            return null;
         }
     }
 }
