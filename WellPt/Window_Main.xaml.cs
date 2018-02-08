@@ -19,21 +19,40 @@ namespace WellPt
     public partial class Window_Main : Window
     {
         private QItem dItem = new QItem(1);
+        private int correctCount;
+        public int CorrectCount
+        {
+            get { return this.correctCount; }
+            set { this.correctCount = value; }
+        }
 
         public Window_Main()
         {
             InitializeComponent();
+            this.CorrectCount = 0;
 
             Storyboard sb = (this.FindResource("sbAnimateImage2") as Storyboard);
             sb.Begin();
 
-            Binding myBinding = new Binding("Prompt") { Source = dItem, Mode = BindingMode.OneWay, Converter = new Converter_PromptId() };
-            BindingOperations.SetBinding(ui_dItem_prompt, Label.ContentProperty, myBinding);
+            Binding bind_qId = new Binding("Id") { Source = dItem, Mode = BindingMode.OneWay, Converter = new Converter_QId() };
+            Binding bind_qPrompt = new Binding("Prompt") { Source = dItem, Mode = BindingMode.OneWay };
+            Binding bind_qOption1 = new Binding("Options") { Source = dItem, Mode = BindingMode.OneWay, Converter = new Converter_QOption(), ConverterParameter = 1 };
+            Binding bind_qOption2 = new Binding("Options") { Source = dItem, Mode = BindingMode.OneWay, Converter = new Converter_QOption(), ConverterParameter = 2 };
+            Binding bind_qOption3 = new Binding("Options") { Source = dItem, Mode = BindingMode.OneWay, Converter = new Converter_QOption(), ConverterParameter = 3 };
+            Binding bind_qOption4 = new Binding("Options") { Source = dItem, Mode = BindingMode.OneWay, Converter = new Converter_QOption(), ConverterParameter = 4 };
+            BindingOperations.SetBinding(ui_dItem_id, Label.ContentProperty, bind_qId);
+            BindingOperations.SetBinding(ui_dItem_prompt, Label.ContentProperty, bind_qPrompt);
+            BindingOperations.SetBinding(ui_dItem_opt1, Label.ContentProperty, bind_qOption1);
+            BindingOperations.SetBinding(ui_dItem_opt2, Label.ContentProperty, bind_qOption2);
+            BindingOperations.SetBinding(ui_dItem_opt3, Label.ContentProperty, bind_qOption3);
+            BindingOperations.SetBinding(ui_dItem_opt4, Label.ContentProperty, bind_qOption4);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if(dItem.Id == Util.qBook.Count - 1)
+            if (dItem.Id == Util.qBook.Count - 1) { this.CorrectCount += 1; }
+
+            if (dItem.Id == Util.qBook.Count - 1)
             {
                 Window_Notification note = new Window_Notification("hello");
                 note.Show();

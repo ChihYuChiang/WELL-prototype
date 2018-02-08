@@ -73,19 +73,29 @@ namespace WellPt
 
     public class QItem : INotifyPropertyChanged
     {
-        private string prompt;
         private int id;
+        private string prompt;
+        private string[] options;
 
-        public int Ans { get; set; }
-        public string[] Opts { get; set; }
-
+        public string Image { set; get; }
+        public int Answer { set; get; }
+        public string Feedback { set; get; }
         public int Id
         {
             get { return this.id; }
             set
             {
-                this.id = value;
-                this.Prompt = Util.qBook[this.Id][1];
+                if (this.id != value)
+                {
+                    this.id = value;
+                    this.NotifyPropertyChanged("Id");
+
+                    this.Prompt = Util.qBook[this.Id][1];
+                    this.Options = new string[] { Util.qBook[this.Id][2], Util.qBook[this.Id][3], Util.qBook[this.Id][4], Util.qBook[this.Id][5] };
+                    this.Image = Util.qBook[this.Id][6];
+                    this.Answer = Int32.Parse(Util.qBook[this.Id][7]);
+                    this.Feedback = Util.qBook[this.Id][8];
+                }
             }
         }
 
@@ -101,11 +111,22 @@ namespace WellPt
                 }
             }
         }
+        public string[] Options
+        {
+            get { return this.options; }
+            set
+            {
+                if (this.options != value)
+                {
+                    this.options = value;
+                    this.NotifyPropertyChanged("Options");
+                }
+            }
+        }
 
         public QItem(int id) { this.Id = id; }
 
         public event PropertyChangedEventHandler PropertyChanged;
-
         public void NotifyPropertyChanged(string propName)
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
@@ -113,12 +134,28 @@ namespace WellPt
     }
 
 
-    public class Converter_PromptId : IValueConverter
+    public class Converter_QId : IValueConverter
     {
         public object Convert(object value, Type targetType,
                               object parameter, System.Globalization.CultureInfo culture)
         {
             return "Q" + value + " of " + (Util.qBook.Count - 1).ToString();
+        }
+
+        public object ConvertBack(object value, Type targetType,
+                                  object parameter, System.Globalization.CultureInfo culture)
+        {
+            return null;
+        }
+    }
+
+    public class Converter_QOption : IValueConverter
+    {
+        public object Convert(object value, Type targetType,
+                              object parameter, System.Globalization.CultureInfo culture)
+        {
+            string[] options = (string[])value;
+            return options[(int)parameter - 1];
         }
 
         public object ConvertBack(object value, Type targetType,

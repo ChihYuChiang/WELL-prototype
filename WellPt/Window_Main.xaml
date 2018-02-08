@@ -113,7 +113,7 @@
                             RadiusX="5"
                             RadiusY="5" />
                         <Label
-                            Name="prompt_id"
+                            Name="ui_dItem_id"
                             VerticalContentAlignment="Center"
                             FontSize="10"
                             Foreground="White">
@@ -125,12 +125,7 @@
                 <RadioButton Name="ui_dItem_opt1" GroupName="ready">Vitamin C</RadioButton>
                 <RadioButton Name="ui_dItem_opt2" GroupName="ready">No</RadioButton>
                 <RadioButton Name="ui_dItem_opt3" GroupName="ready">No tell</RadioButton>
-                <RadioButton
-                    Name="ui_dItem_opt4"
-                    GroupName="ready"
-                    IsChecked="True">
-                    Maybe
-                </RadioButton>
+                <RadioButton Name="ui_dItem_opt4" GroupName="ready">Maybe</RadioButton>
             </StackPanel>
         </StackPanel>
         <Frame
