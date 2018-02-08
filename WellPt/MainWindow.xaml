@@ -37,11 +37,13 @@
         </Storyboard>
         <Storyboard x:Key="sbAnimateImage3">
             <DoubleAnimation
-                Storyboard.TargetName="imageR"
+                AutoReverse="True"
+                RepeatBehavior="Forever"
+                Storyboard.TargetName="imageS"
                 Storyboard.TargetProperty="Opacity"
                 From="1"
-                To="0"
-                Duration="00:00:10.000" />
+                To="0.5"
+                Duration="00:00:00.50" />
         </Storyboard>
     </Window.Resources>
     <Grid>
@@ -53,19 +55,46 @@
                     Canvas.Top="20"
                     Height="100"
                     RenderTransformOrigin="0.5,0.5"
-                    Source="img/Picture2.png" />
+                    Source="img/M_cloud_1.png" />
                 <Image
                     x:Name="imageR"
-                    Canvas.Left="110"
-                    Canvas.Top="55"
-                    Width="100"
-                    Height="100"
+                    Canvas.Left="335"
+                    Canvas.Top="95"
+                    Width="60"
+                    Panel.ZIndex="1"
                     RenderTransformOrigin="0.5,0.5"
-                    Source="img/Picture3.png">
+                    Source="img/M_elf_2.png">
                     <Image.RenderTransform>
                         <RotateTransform Angle="0" />
                     </Image.RenderTransform>
                 </Image>
+                <Image
+                    x:Name="imageS"
+                    Canvas.Left="358"
+                    Canvas.Top="163"
+                    Width="20"
+                    Panel.ZIndex="1"
+                    Source="img/M_sun_1.png" />
+                <Image
+                    Canvas.Left="338"
+                    Canvas.Top="20"
+                    Width="120"
+                    Source="img/M_tree_1.png" />
+                <Image
+                    Canvas.Left="253"
+                    Canvas.Top="120"
+                    Width="100"
+                    Source="img/M_grass_1.png" />
+                <Image
+                    Canvas.Left="148"
+                    Canvas.Top="120"
+                    Width="100"
+                    Source="img/M_grass_1.png" />
+                <Image
+                    Canvas.Left="48"
+                    Canvas.Top="120"
+                    Width="100"
+                    Source="img/M_grass_1.png" />
             </Canvas>
             <Button
                 Width="75"
@@ -75,13 +104,42 @@
                 Click="Button_Click"
                 Content="Button" />
             <StackPanel Margin="10">
-                <Label Name="ui_dItem_prompt" FontWeight="Bold">Are you ready?</Label>
-                <RadioButton Name="ui_dItem_opt1" GroupName="ready">Yes</RadioButton>
+                <WrapPanel>
+                    <Grid>
+                        <Rectangle
+                            Height="20"
+                            Fill="#FF5C4932"
+                            Opacity="0.75"
+                            RadiusX="5"
+                            RadiusY="5" />
+                        <Label
+                            Name="prompt_id"
+                            VerticalContentAlignment="Center"
+                            FontSize="10"
+                            Foreground="White">
+                            Q1 of 5
+                        </Label>
+                    </Grid>
+                    <Label Name="ui_dItem_prompt" FontWeight="Bold">What important mineral is found in all foods in the Dairy Group?</Label>
+                </WrapPanel>
+                <RadioButton Name="ui_dItem_opt1" GroupName="ready">Vitamin C</RadioButton>
                 <RadioButton Name="ui_dItem_opt2" GroupName="ready">No</RadioButton>
                 <RadioButton Name="ui_dItem_opt3" GroupName="ready">No tell</RadioButton>
-                <RadioButton Name="ui_dItem_opt4" GroupName="ready" IsChecked="True">Maybe</RadioButton>
+                <RadioButton
+                    Name="ui_dItem_opt4"
+                    GroupName="ready"
+                    IsChecked="True">
+                    Maybe
+                </RadioButton>
             </StackPanel>
         </StackPanel>
+        <Frame
+            Width="100"
+            Height="100"
+            Margin="594,334,-175.333,-80.667"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Content="Frame" />
     </Grid>
 
 
