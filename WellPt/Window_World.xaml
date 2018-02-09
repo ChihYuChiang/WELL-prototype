@@ -14,5 +14,12 @@
             <StaticResourceExtension ResourceKey="App_FadeIn" />
         </Storyboard>
     </Window.Resources>
-    <Grid />
+    <Grid>
+        <Rectangle
+            x:Name="ui_mask"
+            Panel.ZIndex="{Binding Ui_Mask_Zindex, Mode=OneWay}"
+            d:IsHidden="True"
+            Fill="{DynamicResource Brush_BG}"
+            Opacity="{Binding Ui_Mask_Opacity, Mode=OneWay}" d:IsLocked="True" />
+    </Grid>
 </Window>

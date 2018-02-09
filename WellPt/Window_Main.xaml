@@ -9,7 +9,6 @@
     Title="MainWindow"
     Width="525"
     Height="382.991"
-    Background="{DynamicResource MaterialDesignPaper}"
     FontFamily="{DynamicResource MaterialDesignFont}"
     TextElement.FontSize="13"
     TextElement.FontWeight="Regular"
@@ -19,7 +18,7 @@
     mc:Ignorable="d">
     <Window.Resources>
         <Storyboard x:Key="WindowOn" TargetProperty="Opacity">
-            <StaticResourceExtension ResourceKey="App_FadeIn"/>
+            <StaticResourceExtension ResourceKey="App_FadeIn" />
         </Storyboard>
         <Storyboard x:Key="sbAnimateImage">
             <DoubleAnimation
@@ -39,10 +38,10 @@
                 Duration="00:00:01" />
             <DoubleAnimation
                 AutoReverse="True"
+                By="10"
                 RepeatBehavior="Forever"
                 Storyboard.TargetName="imageS"
                 Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.BlurRadius)"
-                By="10"
                 Duration="00:00:01" />
         </Storyboard>
         <Storyboard x:Key="sbAnimateImage4">
@@ -60,7 +59,13 @@
     </Window.Resources>
 
     <Grid>
-        <!--<Rectangle Fill="#7FFFFFFF" Panel.ZIndex="100" />-->
+        <Rectangle
+            x:Name="ui_mask"
+            Panel.ZIndex="{Binding Ui_Mask_Zindex, Mode=OneWay}"
+            d:IsHidden="True"
+            d:IsLocked="True"
+            Fill="{DynamicResource Brush_BG}"
+            Opacity="{Binding Ui_Mask_Opacity, Mode=OneWay}" />
         <StackPanel Margin="10">
             <Canvas>
                 <Image
@@ -91,10 +96,14 @@
                     RenderTransformOrigin="0.5,0.5"
                     Source="img/M_sun_1.png">
                     <Image.RenderTransform>
-                        <TranslateTransform X="20" Y="75"/>
+                        <TranslateTransform X="20" Y="75" />
                     </Image.RenderTransform>
                     <Image.Effect>
-                        <DropShadowEffect Color="#FFFFD63F" ShadowDepth="0" Direction="0" BlurRadius="10" />
+                        <DropShadowEffect
+                            BlurRadius="10"
+                            Direction="0"
+                            ShadowDepth="0"
+                            Color="#FFFFD63F" />
                     </Image.Effect>
                 </Image>
                 <Image

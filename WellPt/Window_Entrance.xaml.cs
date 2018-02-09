@@ -18,10 +18,12 @@ namespace WellPt
 {
     public partial class Window_Entrance : Window
     {
+        public DataContainer WDataContainer = new DataContainer();
+
         public Window_Entrance()
         {
             InitializeComponent();
-
+            this.DataContext = this.WDataContainer;
 
             Storyboard sb3 = (this.FindResource("WindowOn") as Storyboard);
             Storyboard.SetTarget(sb3, this);

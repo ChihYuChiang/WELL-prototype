@@ -19,12 +19,16 @@ namespace WellPt
     public partial class Window_Main : Window
     {
         private QItem dItem = new QItem(1);
+
+        public DataContainer WDataContainer = new DataContainer();
         public int CorrectCount { get; set; }
         public int CheckedOption { get; set; }
 
         public Window_Main()
         {
             InitializeComponent();
+            
+            this.DataContext = this.WDataContainer;
             this.CorrectCount = 0;
 
             Storyboard sb = (this.FindResource("sbAnimateImage2") as Storyboard);
@@ -59,8 +63,10 @@ namespace WellPt
 
             if (CheckedOption == dItem.Answer) { CorrectCount += 1; }
 
-            if (dItem.Id == Util.qBook.Count - 1 || CorrectCount == 3)
+            if (dItem.Id == DataContainer.QBook.Count - 1 || CorrectCount == 3)
             {
+                this.WDataContainer.Ui_Mask_Zindex = 100;
+                this.WDataContainer.Ui_Mask_Opacity = 0.3;
                 Window_Notification note = new Window_Notification("hello");
                 note.ShowDialog();
                 return;

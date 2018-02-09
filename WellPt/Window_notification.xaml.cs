@@ -37,7 +37,24 @@ namespace WellPt
             //(object _sender, EventArgs _e) => this.Close()
             //equals to
             //lambda(object _sender, EventArgs _e) {this.Close()}
-            sb.Completed += (object _sender, EventArgs _e) => this.Close();
+            sb.Completed += (object _sender, EventArgs _e) =>
+            {
+                foreach (Window w in Application.Current.Windows)
+                {
+                    Type[] targetArray = 
+                    {
+                        typeof(Window_Main),
+                        typeof(Window_Entrance),
+                        typeof(Window_World)
+                    };
+                    if (targetArray.Contains(w.GetType()))
+                    {
+                        (w as Window_Main).WDataContainer.Ui_Mask_Opacity = 0.05;
+                        (w as Window_Main).WDataContainer.Ui_Mask_Zindex = 0;
+                    }
+                }
+                this.Close();
+            };
             sb.Begin();
         }
     }

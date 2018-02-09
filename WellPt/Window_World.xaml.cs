@@ -17,9 +17,12 @@ namespace WellPt
 {
     public partial class Window_World : Window
     {
+        public DataContainer WDataContainer = new DataContainer();
+
         public Window_World()
         {
             InitializeComponent();
+            this.DataContext = this.WDataContainer;
 
             Storyboard sb = (this.FindResource("WindowOn") as Storyboard);
             Storyboard.SetTarget(sb, this);

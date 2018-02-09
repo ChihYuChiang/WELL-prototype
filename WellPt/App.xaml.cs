@@ -16,10 +16,16 @@ namespace WellPt
 {
     public partial class App : Application {}
 
+
+
+
+    /*
+    ------------------------------------------------------------
+    Utility functions
+    ------------------------------------------------------------
+    */
     public class Util
     {
-        public static List<string[]> qBook = ParseCSV(new StringReader(WellPt.Properties.Resources.QBook));
-
         public static List<string[]> ParseCSV(StringReader text)
         {
             string[] fields;
@@ -71,6 +77,57 @@ namespace WellPt
     }
 
 
+
+
+    /*
+    ------------------------------------------------------------
+    Data
+    ------------------------------------------------------------
+    */
+    public class DataContainer : INotifyPropertyChanged
+    {
+        public static List<string[]> QBook = Util.ParseCSV(new StringReader(WellPt.Properties.Resources.QBook));
+        private double ui_mask_opacity;
+        private int ui_mask_zindex;
+
+        public double Ui_Mask_Opacity
+        {
+            get { return this.ui_mask_opacity; }
+            set
+            {
+                if (this.ui_mask_opacity != value)
+                {
+                    this.ui_mask_opacity = value;
+                    this.NotifyPropertyChanged("Ui_Mask_Opacity");
+                }
+            }
+        }
+        public int Ui_Mask_Zindex
+        {
+            get { return this.ui_mask_zindex; }
+            set
+            {
+                if (this.ui_mask_zindex != value)
+                {
+                    this.ui_mask_zindex = value;
+                    this.NotifyPropertyChanged("Ui_Mask_Zindex");
+                }
+            }
+        }
+
+
+        //--Constructor
+        public DataContainer() { this.Ui_Mask_Opacity = 0.05; this.Ui_Mask_Zindex = 0; }
+
+
+        //--Property change event handle
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void NotifyPropertyChanged(string propName)
+        {
+            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
+        }
+    }
+
     public class QItem : INotifyPropertyChanged
     {
         private int id;
@@ -90,15 +147,20 @@ namespace WellPt
                     this.id = value;
                     this.NotifyPropertyChanged("Id");
 
-                    this.Prompt = Util.qBook[this.Id][1];
-                    this.Options = new string[] { Util.qBook[this.Id][2], Util.qBook[this.Id][3], Util.qBook[this.Id][4], Util.qBook[this.Id][5] };
-                    this.Image = Util.qBook[this.Id][6];
-                    this.Answer = Int32.Parse(Util.qBook[this.Id][7]);
-                    this.Feedback = Util.qBook[this.Id][8];
+                    this.Prompt = DataContainer.QBook[this.Id][1];
+                    this.Options = new string[]
+                    {
+                        DataContainer.QBook[this.Id][2],
+                        DataContainer.QBook[this.Id][3],
+                        DataContainer.QBook[this.Id][4],
+                        DataContainer.QBook[this.Id][5]
+                    };
+                    this.Image = DataContainer.QBook[this.Id][6];
+                    this.Answer = Int32.Parse(DataContainer.QBook[this.Id][7]);
+                    this.Feedback = DataContainer.QBook[this.Id][8];
                 }
             }
         }
-
         public string Prompt
         {
             get { return this.prompt; }
@@ -124,8 +186,12 @@ namespace WellPt
             }
         }
 
+
+        //--Constructor
         public QItem(int id) { this.Id = id; }
 
+
+        //--Property change event handle
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propName)
         {
@@ -134,12 +200,19 @@ namespace WellPt
     }
 
 
+
+
+    /*
+    ------------------------------------------------------------
+    Converters
+    ------------------------------------------------------------
+    */
     public class Converter_QId : IValueConverter
     {
         public object Convert(object value, Type targetType,
                               object parameter, System.Globalization.CultureInfo culture)
         {
-            return "Q" + value + " of " + (Util.qBook.Count - 1).ToString();
+            return "Q" + value + " of " + (DataContainer.QBook.Count - 1).ToString();
         }
 
         public object ConvertBack(object value, Type targetType,
