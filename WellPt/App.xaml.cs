@@ -117,7 +117,7 @@ namespace WellPt
 
 
         //--Constructor
-        public DataContainer() { this.Ui_Mask_Opacity = 0.05; this.Ui_Mask_Zindex = 0; }
+        public DataContainer() { this.Ui_Mask_Opacity = 0.1; this.Ui_Mask_Zindex = 0; }
 
 
         //--Property change event handle

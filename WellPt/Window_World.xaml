@@ -11,8 +11,8 @@
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
     <Window.Resources>
-        <Storyboard x:Key="WindowOn" TargetProperty="Opacity">
-            <StaticResourceExtension ResourceKey="App_FadeIn" />
+        <Storyboard x:Key="WindowOn" Storyboard.TargetProperty="Opacity">
+            <StaticResource ResourceKey="App_FadeIn" />
         </Storyboard>
     </Window.Resources>
     <Grid>

@@ -10,7 +10,6 @@
     Title="Window1"
     Width="663.92"
     Height="587.579"
-    WindowStartupLocation="CenterScreen"
     Background="{DynamicResource MaterialDesignPaper}"
     FontFamily="{DynamicResource MaterialDesignFont}"
     TextElement.FontSize="13"
@@ -18,10 +17,11 @@
     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
     TextOptions.TextFormattingMode="Ideal"
     TextOptions.TextRenderingMode="Auto"
+    WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
     <Window.Resources>
         <Storyboard x:Key="WindowOn" TargetProperty="Opacity">
-            <StaticResourceExtension ResourceKey="App_FadeIn"/>
+            <StaticResourceExtension ResourceKey="App_FadeIn" />
         </Storyboard>
         <Storyboard
             x:Key="story"
@@ -54,8 +54,9 @@
             x:Name="ui_mask"
             Panel.ZIndex="{Binding Ui_Mask_Zindex, Mode=OneWay}"
             d:IsHidden="True"
+            d:IsLocked="True"
             Fill="{DynamicResource Brush_BG}"
-            Opacity="{Binding Ui_Mask_Opacity, Mode=OneWay}" d:IsLocked="True" />
+            Opacity="{Binding Ui_Mask_Opacity, Mode=OneWay}" />
         <StackPanel>
             <wpf:ChromiumWebBrowser
                 Name="Browser"
@@ -93,7 +94,10 @@
                 Height="5"
                 Fill="{DynamicResource {x:Static SystemColors.MenuHighlightBrushKey}}"
                 Opacity="0" />
-            <Image Height="100" Source="img/E_Portrait_1.png" Margin="0,0,0.333,0"/>
+            <Image
+                Height="100"
+                Margin="0,0,0.333,0"
+                Source="img/E_Portrait_1.png" />
         </StackPanel>
     </Grid>
 </Window>

@@ -23,8 +23,17 @@
         </Storyboard>
     </Window.Resources>
     <Grid>
+        <Rectangle
+            Width="297"
+            Height="166"
+            Margin="10,10,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Fill="#FFF4F4F5"
+            RadiusX="10"
+            RadiusY="10" />
         <Button
-            Name="Bt"
+            x:Name="Bt"
             Width="89"
             Margin="112,127,116.333,0"
             HorizontalAlignment="Center"
