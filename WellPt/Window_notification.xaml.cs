@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Media.Animation;
 
 namespace WellPt
 {
@@ -20,12 +21,24 @@ namespace WellPt
         {
             InitializeComponent();
 
+            Storyboard sb = (this.FindResource("WindowOn") as Storyboard);
+            Storyboard.SetTarget(sb, this);
+            sb.Begin();
+
             Bt.Content = t;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Storyboard sb = (this.FindResource("WindowOff") as Storyboard);
+            Storyboard.SetTarget(sb, this);
+
+            //--Anonymous function
+            //(object _sender, EventArgs _e) => this.Close()
+            //equals to
+            //lambda(object _sender, EventArgs _e) {this.Close()}
+            sb.Completed += (object _sender, EventArgs _e) => this.Close();
+            sb.Begin();
         }
     }
 }

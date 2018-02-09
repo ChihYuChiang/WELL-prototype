@@ -29,6 +29,9 @@ namespace WellPt
 
             Storyboard sb = (this.FindResource("sbAnimateImage2") as Storyboard);
             sb.Begin();
+            Storyboard sb2 = (this.FindResource("WindowOn") as Storyboard);
+            Storyboard.SetTarget(sb2, this);
+            sb2.Begin();
 
             Binding bind_qId = new Binding("Id") { Source = dItem, Mode = BindingMode.OneWay, Converter = new Converter_QId() };
             Binding bind_qPrompt = new Binding("Prompt") { Source = dItem, Mode = BindingMode.OneWay };
@@ -59,7 +62,7 @@ namespace WellPt
             if (dItem.Id == Util.qBook.Count - 1 || CorrectCount == 3)
             {
                 Window_Notification note = new Window_Notification("hello");
-                note.Show();
+                note.ShowDialog();
                 return;
             }
             

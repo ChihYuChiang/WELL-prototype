@@ -1,0 +1,18 @@
+﻿<Window
+    x:Class="WellPt.Window_World"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:WellPt"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Window_OuterMain"
+    Width="651.333"
+    Height="449.333"
+    mc:Ignorable="d">
+    <Window.Resources>
+        <Storyboard x:Key="WindowOn" TargetProperty="Opacity">
+            <StaticResourceExtension ResourceKey="App_FadeIn" />
+        </Storyboard>
+    </Window.Resources>
+    <Grid />
+</Window>

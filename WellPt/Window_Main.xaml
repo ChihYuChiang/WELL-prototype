@@ -18,6 +18,9 @@
     TextOptions.TextRenderingMode="Auto"
     mc:Ignorable="d">
     <Window.Resources>
+        <Storyboard x:Key="WindowOn" TargetProperty="Opacity">
+            <StaticResourceExtension ResourceKey="App_FadeIn"/>
+        </Storyboard>
         <Storyboard x:Key="sbAnimateImage">
             <DoubleAnimation
                 By="100"
@@ -55,7 +58,9 @@
                 Duration="00:00:02" />
         </Storyboard>
     </Window.Resources>
+
     <Grid>
+        <!--<Rectangle Fill="#7FFFFFFF" Panel.ZIndex="100" />-->
         <StackPanel Margin="10">
             <Canvas>
                 <Image

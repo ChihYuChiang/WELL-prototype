@@ -9,7 +9,7 @@
     xmlns:wpf="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
     Title="Window1"
     Width="663.92"
-    Height="476.246"
+    Height="587.579"
     Background="{DynamicResource MaterialDesignPaper}"
     FontFamily="{DynamicResource MaterialDesignFont}"
     TextElement.FontSize="13"
@@ -19,6 +19,9 @@
     TextOptions.TextRenderingMode="Auto"
     mc:Ignorable="d">
     <Window.Resources>
+        <Storyboard x:Key="WindowOn" TargetProperty="Opacity">
+            <StaticResourceExtension ResourceKey="App_FadeIn"/>
+        </Storyboard>
         <Storyboard
             x:Key="story"
             Completed="storyCompleted"
@@ -51,7 +54,7 @@
                 Name="Browser"
                 Width="600"
                 Height="300"
-                Address="https://www.youtube.com/embed/XKuL5xaKZHM" />
+                Address="https://www.youtube.com/embed/tuHqE3mQkQA" />
             <Button
                 Width="75"
                 Margin="50,0,0,0"
@@ -83,6 +86,7 @@
                 Height="5"
                 Fill="{DynamicResource {x:Static SystemColors.MenuHighlightBrushKey}}"
                 Opacity="0" />
+            <Image Height="100" Source="img/E_Portrait_1.png" Margin="0,0,0.333,0"/>
         </StackPanel>
     </Grid>
 </Window>

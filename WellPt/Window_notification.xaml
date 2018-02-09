@@ -9,7 +9,17 @@
     Width="200"
     Height="120"
     WindowStyle="None"
-    mc:Ignorable="d">
+    ResizeMode="NoResize"
+    mc:Ignorable="d"
+    AllowsTransparency="True">
+    <Window.Resources>
+        <Storyboard x:Key="WindowOn" TargetProperty="Opacity">
+            <StaticResourceExtension ResourceKey="App_FadeIn"/>
+        </Storyboard>
+        <Storyboard x:Key="WindowOff" TargetProperty="Opacity">
+            <StaticResourceExtension ResourceKey="App_FadeOut"/>
+        </Storyboard>
+    </Window.Resources>
     <Grid>
         <Button
             Name="Bt"

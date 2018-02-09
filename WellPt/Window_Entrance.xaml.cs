@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,6 +21,11 @@ namespace WellPt
         public Window_Entrance()
         {
             InitializeComponent();
+
+
+            Storyboard sb3 = (this.FindResource("WindowOn") as Storyboard);
+            Storyboard.SetTarget(sb3, this);
+            sb3.Begin();
 
             Storyboard sb = this.FindResource("sbAnimateImage") as Storyboard;
             sb.Begin();
