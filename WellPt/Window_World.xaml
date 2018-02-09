@@ -8,6 +8,7 @@
     Title="Window_OuterMain"
     Width="651.333"
     Height="449.333"
+    WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
     <Window.Resources>
         <Storyboard x:Key="WindowOn" TargetProperty="Opacity">
@@ -19,7 +20,8 @@
             x:Name="ui_mask"
             Panel.ZIndex="{Binding Ui_Mask_Zindex, Mode=OneWay}"
             d:IsHidden="True"
+            d:IsLocked="True"
             Fill="{DynamicResource Brush_BG}"
-            Opacity="{Binding Ui_Mask_Opacity, Mode=OneWay}" d:IsLocked="True" />
+            Opacity="{Binding Ui_Mask_Opacity, Mode=OneWay}" />
     </Grid>
 </Window>

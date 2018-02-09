@@ -6,25 +6,27 @@
     xmlns:local="clr-namespace:WellPt"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="Window2"
-    Width="200"
-    Height="120"
-    WindowStyle="None"
+    Width="317.333"
+    Height="186"
+    AllowsTransparency="True"
+    Background="Transparent"
     ResizeMode="NoResize"
-    mc:Ignorable="d"
-    AllowsTransparency="True">
+    WindowStartupLocation="CenterOwner"
+    WindowStyle="None"
+    mc:Ignorable="d">
     <Window.Resources>
         <Storyboard x:Key="WindowOn" TargetProperty="Opacity">
-            <StaticResourceExtension ResourceKey="App_FadeIn"/>
+            <StaticResourceExtension ResourceKey="App_FadeIn" />
         </Storyboard>
         <Storyboard x:Key="WindowOff" TargetProperty="Opacity">
-            <StaticResourceExtension ResourceKey="App_FadeOut"/>
+            <StaticResourceExtension ResourceKey="App_FadeOut" />
         </Storyboard>
     </Window.Resources>
     <Grid>
         <Button
             Name="Bt"
             Width="89"
-            Margin="0,70,0,0"
+            Margin="112,127,116.333,0"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
             Click="Button_Click"

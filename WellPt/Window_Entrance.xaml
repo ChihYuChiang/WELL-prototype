@@ -10,6 +10,7 @@
     Title="Window1"
     Width="663.92"
     Height="587.579"
+    WindowStartupLocation="CenterScreen"
     Background="{DynamicResource MaterialDesignPaper}"
     FontFamily="{DynamicResource MaterialDesignFont}"
     TextElement.FontSize="13"

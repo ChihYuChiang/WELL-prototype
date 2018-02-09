@@ -68,6 +68,7 @@ namespace WellPt
                 this.WDataContainer.Ui_Mask_Zindex = 100;
                 this.WDataContainer.Ui_Mask_Opacity = 0.3;
                 Window_Notification note = new Window_Notification("hello");
+                note.Owner = this;
                 note.ShowDialog();
                 return;
             }
