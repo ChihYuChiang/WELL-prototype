@@ -19,12 +19,8 @@ namespace WellPt
     public partial class Window_Main : Window
     {
         private QItem dItem = new QItem(1);
-        private int correctCount;
-        public int CorrectCount
-        {
-            get { return this.correctCount; }
-            set { this.correctCount = value; }
-        }
+        public int CorrectCount { get; set; }
+        public int CheckedOption { get; set; }
 
         public Window_Main()
         {
@@ -50,9 +46,14 @@ namespace WellPt
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (dItem.Id == Util.qBook.Count - 1) { this.CorrectCount += 1; }
+            ui_dItem_opt1.IsChecked = false;
+            ui_dItem_opt2.IsChecked = false;
+            ui_dItem_opt3.IsChecked = false;
+            ui_dItem_opt4.IsChecked = false;
 
-            if (dItem.Id == Util.qBook.Count - 1)
+            if (CheckedOption == dItem.Answer) { CorrectCount += 1; }
+
+            if (dItem.Id == Util.qBook.Count - 1 || CorrectCount == 3)
             {
                 Window_Notification note = new Window_Notification("hello");
                 note.Show();
@@ -63,6 +64,12 @@ namespace WellPt
             sb.Begin();
 
             dItem.Id += 1;
+        }
+
+        private void RadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            Char[] charArray = (sender as RadioButton).Name.ToCharArray();
+            CheckedOption = (int)Char.GetNumericValue(charArray[charArray.Length - 1]);
         }
     }
 }

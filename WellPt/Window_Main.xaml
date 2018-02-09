@@ -122,20 +122,11 @@
                     </Grid>
                     <Label Name="ui_dItem_prompt" FontWeight="Bold">What important mineral is found in all foods in the Dairy Group?</Label>
                 </WrapPanel>
-                <RadioButton Name="ui_dItem_opt1" GroupName="ready">Vitamin C</RadioButton>
-                <RadioButton Name="ui_dItem_opt2" GroupName="ready">No</RadioButton>
-                <RadioButton Name="ui_dItem_opt3" GroupName="ready">No tell</RadioButton>
-                <RadioButton Name="ui_dItem_opt4" GroupName="ready">Maybe</RadioButton>
+                <RadioButton Name="ui_dItem_opt1" GroupName="ready" Checked="RadioButton_Checked">Vitamin C</RadioButton>
+                <RadioButton Name="ui_dItem_opt2" GroupName="ready" Checked="RadioButton_Checked">No</RadioButton>
+                <RadioButton Name="ui_dItem_opt3" GroupName="ready" Checked="RadioButton_Checked">No tell</RadioButton>
+                <RadioButton Name="ui_dItem_opt4" GroupName="ready" Checked="RadioButton_Checked">Maybe</RadioButton>
             </StackPanel>
         </StackPanel>
-        <Frame
-            Width="100"
-            Height="100"
-            Margin="594,334,-175.333,-80.667"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Content="Frame" />
     </Grid>
-
-
 </Window>
