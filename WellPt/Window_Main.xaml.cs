@@ -46,6 +46,9 @@ namespace WellPt
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            Storyboard sb1 = (this.FindResource("sbAnimateImage4") as Storyboard);
+            sb1.Begin();
+
             ui_dItem_opt1.IsChecked = false;
             ui_dItem_opt2.IsChecked = false;
             ui_dItem_opt3.IsChecked = false;

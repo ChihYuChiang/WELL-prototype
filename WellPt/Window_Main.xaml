@@ -34,16 +34,25 @@
                 From="-5"
                 To="5"
                 Duration="00:00:01" />
-        </Storyboard>
-        <Storyboard x:Key="sbAnimateImage3">
             <DoubleAnimation
                 AutoReverse="True"
                 RepeatBehavior="Forever"
                 Storyboard.TargetName="imageS"
-                Storyboard.TargetProperty="Opacity"
-                From="1"
-                To="0.5"
-                Duration="00:00:00.50" />
+                Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.BlurRadius)"
+                By="10"
+                Duration="00:00:01" />
+        </Storyboard>
+        <Storyboard x:Key="sbAnimateImage4">
+            <DoubleAnimation
+                By="-30"
+                Storyboard.TargetName="imageR"
+                Storyboard.TargetProperty="(Canvas.Left)"
+                Duration="00:00:02" />
+            <DoubleAnimation
+                By="-50"
+                Storyboard.TargetName="imageR"
+                Storyboard.TargetProperty="(Canvas.Top)"
+                Duration="00:00:02" />
         </Storyboard>
     </Window.Resources>
     <Grid>
@@ -70,11 +79,19 @@
                 </Image>
                 <Image
                     x:Name="imageS"
-                    Canvas.Left="358"
-                    Canvas.Top="163"
+                    Canvas.Left="{Binding ElementName=imageR, Path=(Canvas.Left), Mode=OneWay}"
+                    Canvas.Top="{Binding ElementName=imageR, Path=(Canvas.Top), Mode=OneWay}"
                     Width="20"
                     Panel.ZIndex="1"
-                    Source="img/M_sun_1.png" />
+                    RenderTransformOrigin="0.5,0.5"
+                    Source="img/M_sun_1.png">
+                    <Image.RenderTransform>
+                        <TranslateTransform X="20" Y="75"/>
+                    </Image.RenderTransform>
+                    <Image.Effect>
+                        <DropShadowEffect Color="#FFFFD63F" ShadowDepth="0" Direction="0" BlurRadius="10" />
+                    </Image.Effect>
+                </Image>
                 <Image
                     Canvas.Left="338"
                     Canvas.Top="20"
@@ -87,7 +104,7 @@
                     Source="img/M_grass_1.png" />
                 <Image
                     Canvas.Left="148"
-                    Canvas.Top="120"
+                    Canvas.Top="133"
                     Width="100"
                     Source="img/M_grass_1.png" />
                 <Image
@@ -122,10 +139,30 @@
                     </Grid>
                     <Label Name="ui_dItem_prompt" FontWeight="Bold">What important mineral is found in all foods in the Dairy Group?</Label>
                 </WrapPanel>
-                <RadioButton Name="ui_dItem_opt1" GroupName="ready" Checked="RadioButton_Checked">Vitamin C</RadioButton>
-                <RadioButton Name="ui_dItem_opt2" GroupName="ready" Checked="RadioButton_Checked">No</RadioButton>
-                <RadioButton Name="ui_dItem_opt3" GroupName="ready" Checked="RadioButton_Checked">No tell</RadioButton>
-                <RadioButton Name="ui_dItem_opt4" GroupName="ready" Checked="RadioButton_Checked">Maybe</RadioButton>
+                <RadioButton
+                    Name="ui_dItem_opt1"
+                    Checked="RadioButton_Checked"
+                    GroupName="ready">
+                    Vitamin C
+                </RadioButton>
+                <RadioButton
+                    Name="ui_dItem_opt2"
+                    Checked="RadioButton_Checked"
+                    GroupName="ready">
+                    No
+                </RadioButton>
+                <RadioButton
+                    Name="ui_dItem_opt3"
+                    Checked="RadioButton_Checked"
+                    GroupName="ready">
+                    No tell
+                </RadioButton>
+                <RadioButton
+                    Name="ui_dItem_opt4"
+                    Checked="RadioButton_Checked"
+                    GroupName="ready">
+                    Maybe
+                </RadioButton>
             </StackPanel>
         </StackPanel>
     </Grid>
