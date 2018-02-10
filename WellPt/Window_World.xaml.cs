@@ -17,6 +17,8 @@ namespace WellPt
 {
     public partial class Window_World : Window
     {
+        private ResourceDictionary appR = Application.Current.Resources;
+        
         public DataContainer WDataContainer = new DataContainer();
 
 
@@ -38,7 +40,7 @@ namespace WellPt
         */
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Storyboard sb = (this.Resources["WindowOn"] as Storyboard);
+            Storyboard sb = (appR["Sb_FadeIn"] as Storyboard);
             sb.Begin(this);
         }
     }

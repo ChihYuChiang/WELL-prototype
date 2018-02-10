@@ -18,6 +18,7 @@ namespace WellPt
 {
     public partial class Window_Main : Window
     {
+        private ResourceDictionary appR = Application.Current.Resources;
         private QItem dItem = new QItem(1);
 
         public DataContainer WDataContainer = new DataContainer();
@@ -44,9 +45,9 @@ namespace WellPt
         */
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Storyboard sb = (this.Resources["sbAnimateImage2"] as Storyboard);
-            sb.Begin();
-            Storyboard sb2 = (this.Resources["WindowOn"] as Storyboard);
+            Storyboard sb = (appR["Sb_ConRotateS"] as Storyboard);
+            sb.Begin(ui_elf_1);
+            Storyboard sb2 = (appR["Sb_FadeIn"] as Storyboard);
             sb2.Begin(this);
 
             Binding bind_qId = new Binding("Id") { Source = dItem, Mode = BindingMode.OneWay, Converter = new Converter_QId() };

@@ -17,11 +17,13 @@ namespace WellPt
 {
     public partial class Window_Notification : Window
     {
+        private ResourceDictionary appR = Application.Current.Resources;
+
         public Window_Notification(string t)
         {
             InitializeComponent();
 
-            Storyboard sb = (this.Resources["WindowOn"] as Storyboard);
+            Storyboard sb = (appR["Sb_FadeIn"] as Storyboard);
             sb.Begin(this);
 
             Bt.Content = t;
@@ -35,10 +37,17 @@ namespace WellPt
         Events
         ------------------------------------------------------------
         */
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            Storyboard sb = (appR["Sb_FadeIn"] as Storyboard);
+            sb.Begin(this);
+            Storyboard sb2 = (appR["Sb_ConRotateS"] as Storyboard);
+            sb2.Begin(ui_elf_1);
+        }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Storyboard sb = (this.Resources["WindowOff"] as Storyboard);
-            Storyboard.SetTarget(sb, this);
+            Storyboard sb = (appR["Sb_FadeOut"] as Storyboard);
 
             foreach (Window w in Application.Current.Windows)
             {
@@ -60,7 +69,7 @@ namespace WellPt
             //equals to
             //lambda(object _sender, EventArgs _e) {this.Close()}
             sb.Completed += (object _sender, EventArgs _e) => { this.Close(); };
-            sb.Begin();
+            sb.Begin(this);
         }
     }
 }

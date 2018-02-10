@@ -10,35 +10,70 @@
     Height="186"
     AllowsTransparency="True"
     Background="Transparent"
+    Loaded="Window_Loaded"
     ResizeMode="NoResize"
     WindowStartupLocation="CenterOwner"
     WindowStyle="None"
     mc:Ignorable="d">
-    <Window.Resources>
-        <Storyboard x:Key="WindowOn" TargetProperty="Opacity">
-            <StaticResourceExtension ResourceKey="App_FadeIn" />
-        </Storyboard>
-        <Storyboard x:Key="WindowOff" TargetProperty="Opacity">
-            <StaticResourceExtension ResourceKey="App_FadeOut" />
-        </Storyboard>
-    </Window.Resources>
     <Grid>
         <Rectangle
             Width="297"
             Height="166"
-            Margin="10,10,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
+            Margin="10,10,10,10"
             Fill="#FFF4F4F5"
             RadiusX="10"
             RadiusY="10" />
-        <Button
-            x:Name="Bt"
-            Width="89"
-            Margin="112,127,116.333,0"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Top"
-            Click="Button_Click"
-            Content="Got you!" />
+        <Canvas>
+            <Rectangle
+                Canvas.Left="87"
+                Canvas.Top="32"
+                Width="196"
+                Height="82"
+                Fill="{DynamicResource Brush_BaseColor_1}"
+                RadiusX="5"
+                RadiusY="5" />
+            <Rectangle
+                Canvas.Left="83"
+                Canvas.Top="77"
+                Width="20"
+                Height="20"
+                Fill="{DynamicResource Brush_BaseColor_1}"
+                RenderTransformOrigin="0.5,0.5">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform />
+                        <SkewTransform />
+                        <RotateTransform Angle="-60" />
+                        <TranslateTransform />
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+            </Rectangle>
+            <Image
+                x:Name="ui_elf_1"
+                Canvas.Left="22"
+                Canvas.Top="21"
+                Width="60"
+                Panel.ZIndex="1"
+                RenderTransformOrigin="0.5,0.5"
+                Source="img/M_elf_1.png">
+                <Image.RenderTransform>
+                    <RotateTransform Angle="0" />
+                </Image.RenderTransform>
+            </Image>
+            <TextBlock
+                Canvas.Left="101"
+                Canvas.Top="44"
+                Width="171"
+                Height="61"
+                Text="testtesttest" />
+            <Button
+                x:Name="Bt"
+                Canvas.Left="116"
+                Canvas.Top="131"
+                Width="89"
+                Click="Button_Click"
+                Content="Got you!"
+                RenderTransformOrigin="0.697,0.562" />
+        </Canvas>
     </Grid>
 </Window>

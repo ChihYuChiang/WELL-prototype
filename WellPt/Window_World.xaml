@@ -11,11 +11,6 @@
     Loaded="Window_Loaded"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
-    <Window.Resources>
-        <Storyboard x:Key="WindowOn" Storyboard.TargetProperty="Opacity">
-            <StaticResource ResourceKey="App_FadeIn" />
-        </Storyboard>
-    </Window.Resources>
     <Grid>
         <Rectangle
             x:Name="ui_mask"

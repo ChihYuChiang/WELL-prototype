@@ -12,17 +12,56 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Brown.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            <DoubleAnimationUsingKeyFrames x:Key="App_FadeIn" BeginTime="00:00:00">
-                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
-                <SplineDoubleKeyFrame KeyTime="00:00:00.05" Value="0.7"/>
-                <SplineDoubleKeyFrame KeyTime="00:00:00.10" Value="1"/>
-            </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames x:Key="App_FadeOut" BeginTime="00:00:00">
-                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
-                <SplineDoubleKeyFrame KeyTime="00:00:00.12" Value="0.3"/>
-                <SplineDoubleKeyFrame KeyTime="00:00:00.25" Value="0"/>
-            </DoubleAnimationUsingKeyFrames>
-            <SolidColorBrush x:Key="Brush_BG" Color="#FF563815"></SolidColorBrush>
+
+            <SolidColorBrush x:Key="Brush_BG" Color="#FF563815" />
+            <SolidColorBrush x:Key="Brush_BaseColor_1" Color="#FFCFBCA2" />
+
+            <Storyboard x:Key="Sb_FadeIn" x:Shared="false">
+                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetProperty="Opacity">
+                    <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0" />
+                    <SplineDoubleKeyFrame KeyTime="00:00:00.05" Value="0.7" />
+                    <SplineDoubleKeyFrame KeyTime="00:00:00.10" Value="1" />
+                </DoubleAnimationUsingKeyFrames>
+            </Storyboard>
+            <Storyboard x:Key="Sb_FadeOut" x:Shared="false">
+                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetProperty="Opacity">
+                    <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1" />
+                    <SplineDoubleKeyFrame KeyTime="00:00:00.12" Value="0.3" />
+                    <SplineDoubleKeyFrame KeyTime="00:00:00.25" Value="0" />
+                </DoubleAnimationUsingKeyFrames>
+            </Storyboard>
+            <Storyboard x:Key="Sb_ConRotateS" x:Shared="false">
+                <DoubleAnimation
+                    AutoReverse="True"
+                    RepeatBehavior="Forever"
+                    Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.Angle)"
+                    From="-5"
+                    To="5"
+                    Duration="00:00:01" />
+            </Storyboard>
+            <Storyboard x:Key="Sb_BIndicator">
+                <DoubleAnimation
+                    AccelerationRatio="0.9"
+                    AutoReverse="True"
+                    RepeatBehavior="Forever"
+                    Storyboard.TargetProperty="Opacity"
+                    From="0"
+                    To="100"
+                    Duration="00:00:00.60" />
+            </Storyboard>
+            <Storyboard
+                x:Key="Sb_TypeWriter"
+                x:Shared="false"
+                FillBehavior="HoldEnd" />
+
+            <DoubleAnimation
+                x:Key="App_halo"
+                AutoReverse="True"
+                By="80"
+                RepeatBehavior="Forever"
+                Storyboard.TargetName="imageS"
+                Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.BlurRadius)"
+                Duration="00:00:00.50" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

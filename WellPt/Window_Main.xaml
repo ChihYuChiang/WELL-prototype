@@ -9,19 +9,16 @@
     Title="MainWindow"
     Width="525"
     Height="382.991"
-    Loaded="Window_Loaded"
-    WindowStartupLocation="CenterScreen"
     FontFamily="{DynamicResource MaterialDesignFont}"
+    Loaded="Window_Loaded"
     TextElement.FontSize="13"
     TextElement.FontWeight="Regular"
     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
     TextOptions.TextFormattingMode="Ideal"
     TextOptions.TextRenderingMode="Auto"
+    WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
     <Window.Resources>
-        <Storyboard x:Key="WindowOn" TargetProperty="Opacity">
-            <StaticResourceExtension ResourceKey="App_FadeIn" />
-        </Storyboard>
         <Storyboard x:Key="sbAnimateImage">
             <DoubleAnimation
                 By="100"
@@ -29,32 +26,15 @@
                 Storyboard.TargetProperty="(Canvas.Left)"
                 Duration="00:00:02" />
         </Storyboard>
-        <Storyboard x:Key="sbAnimateImage2">
-            <DoubleAnimation
-                AutoReverse="True"
-                RepeatBehavior="Forever"
-                Storyboard.TargetName="imageR"
-                Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.Angle)"
-                From="-5"
-                To="5"
-                Duration="00:00:01" />
-            <DoubleAnimation
-                AutoReverse="True"
-                By="10"
-                RepeatBehavior="Forever"
-                Storyboard.TargetName="imageS"
-                Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.BlurRadius)"
-                Duration="00:00:01" />
-        </Storyboard>
         <Storyboard x:Key="sbAnimateImage4">
             <DoubleAnimation
                 By="-30"
-                Storyboard.TargetName="imageR"
+                Storyboard.TargetName="ui_elf_1"
                 Storyboard.TargetProperty="(Canvas.Left)"
                 Duration="00:00:02" />
             <DoubleAnimation
                 By="-50"
-                Storyboard.TargetName="imageR"
+                Storyboard.TargetName="ui_elf_1"
                 Storyboard.TargetProperty="(Canvas.Top)"
                 Duration="00:00:02" />
         </Storyboard>
@@ -78,7 +58,7 @@
                     RenderTransformOrigin="0.5,0.5"
                     Source="img/M_cloud_1.png" />
                 <Image
-                    x:Name="imageR"
+                    x:Name="ui_elf_1"
                     Canvas.Left="335"
                     Canvas.Top="95"
                     Width="60"
@@ -91,8 +71,8 @@
                 </Image>
                 <Image
                     x:Name="imageS"
-                    Canvas.Left="{Binding ElementName=imageR, Path=(Canvas.Left), Mode=OneWay}"
-                    Canvas.Top="{Binding ElementName=imageR, Path=(Canvas.Top), Mode=OneWay}"
+                    Canvas.Left="{Binding ElementName=ui_elf_1, Path=(Canvas.Left), Mode=OneWay}"
+                    Canvas.Top="{Binding ElementName=ui_elf_1, Path=(Canvas.Top), Mode=OneWay}"
                     Width="20"
                     Panel.ZIndex="1"
                     RenderTransformOrigin="0.5,0.5"

@@ -50,11 +50,8 @@ namespace WellPt
             return parsedData;
         }
 
-        public static void TypewriteTextblock(Window window, string textToAnimate, TextBlock txt, TimeSpan timeSpan)
+        public static void TypewriteTextblock(Window window, string textToAnimate, TextBlock textBlock, TimeSpan timeSpan)
         {
-            Storyboard sb2 = window.Resources["bindicate"] as Storyboard;
-            sb2.Stop();
-
             DiscreteStringKeyFrame discreteStringKeyFrame;
             StringAnimationUsingKeyFrames stringAnimationUsingKeyFrames = new StringAnimationUsingKeyFrames();
             stringAnimationUsingKeyFrames.Duration = new Duration(timeSpan);
@@ -68,13 +65,13 @@ namespace WellPt
                 discreteStringKeyFrame.Value = tmp;
                 stringAnimationUsingKeyFrames.KeyFrames.Add(discreteStringKeyFrame);
             }
-            Storyboard.SetTargetName(stringAnimationUsingKeyFrames, txt.Name);
+            Storyboard.SetTargetName(stringAnimationUsingKeyFrames, textBlock.Name);
             Storyboard.SetTargetProperty(stringAnimationUsingKeyFrames, new PropertyPath(TextBlock.TextProperty));
 
-            Storyboard sb = window.Resources["story"] as Storyboard;
+            Storyboard sb = Application.Current.Resources["Sb_TypeWriter"] as Storyboard;
             sb.Children.Add(stringAnimationUsingKeyFrames);
 
-            sb.Begin(txt);
+            sb.Begin(textBlock);
         }
 
         public static List<ImageSource> GetImagesFromUris(string[] uris)

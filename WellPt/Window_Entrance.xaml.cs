@@ -19,6 +19,7 @@ namespace WellPt
 {
     public partial class Window_Entrance : Window
     {
+        private ResourceDictionary appR = Application.Current.Resources;
         private DispatcherTimer slide_change;
         private Image[] slide_imgCtrls;
         private List<ImageSource> slide_imgs;
@@ -35,7 +36,7 @@ namespace WellPt
             this.DataContext = this.WDataContainer;
 
             string[] imgUris = { "img/M_cloud_1.png", "img/M_sun_1.png" };
-            this.slide_imgCtrls = new Image[] { ui_img1, ui_img2 };
+            this.slide_imgCtrls = new Image[] { ui_bgStory_1, ui_bgStory_2 };
             this.slide_imgs = Util.GetImagesFromUris(imgUris);
             this.slide_change = new DispatcherTimer();
             this.slide_change.Interval = new TimeSpan(0, 0, 3);
@@ -60,9 +61,9 @@ namespace WellPt
             Image imgFadeIn = this.slide_imgCtrls[this.slide_cCtrlIndex];
             imgFadeIn.Source = this.slide_imgs[this.slide_cSourceIndex];
 
-            Storyboard StboardFadeOut = this.Resources["WindowOff"] as Storyboard;
+            Storyboard StboardFadeOut = appR["Sb_FadeOut"] as Storyboard;
             StboardFadeOut.Begin(imgFadeOut);
-            Storyboard StboardFadeIn = this.Resources["WindowOn"] as Storyboard;
+            Storyboard StboardFadeIn = appR["Sb_FadeIn"] as Storyboard;
             StboardFadeIn.Begin(imgFadeIn);
         }
 
@@ -78,14 +79,14 @@ namespace WellPt
         {
             this.slide_change.IsEnabled = true;
 
-            Storyboard sb3 = this.Resources["WindowOn"] as Storyboard;
+            Storyboard sb3 = appR["Sb_FadeIn"] as Storyboard;
             sb3.Begin(this);
             
             Storyboard sb = this.Resources["sbAnimateImage"] as Storyboard;
             sb.Begin();
 
-            Storyboard sb2 = this.Resources["bindicate"] as Storyboard;
-            sb2.Begin();
+            Storyboard sb2 = appR["Sb_BIndicator"] as Storyboard;
+            sb2.Begin(ui_bIndicator);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -99,12 +100,6 @@ namespace WellPt
         {
             string t = "this is a testing string message.  is a testing string message.";
             Util.TypewriteTextblock(this, t, txtb, new TimeSpan(0, 0, 0, 0, t.Length / 10 * 1000));
-        }
-
-        private void storyCompleted(object sender, EventArgs e)
-        {
-            Storyboard sb = this.Resources["bindicate"] as Storyboard;
-            sb.Begin();
         }
     }
 }
