@@ -8,8 +8,8 @@
     Title="Window_OuterMain"
     Width="651.333"
     Height="449.333"
-    WindowStartupLocation="CenterScreen"
     Loaded="Window_Loaded"
+    WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
     <Window.Resources>
         <Storyboard x:Key="WindowOn" Storyboard.TargetProperty="Opacity">
@@ -24,5 +24,27 @@
             d:IsLocked="True"
             Fill="{DynamicResource Brush_BG}"
             Opacity="{Binding Ui_Mask_Opacity, Mode=OneWay}" />
+        <Label
+            Margin="288,166,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Content="PASS"
+            FontWeight="Bold"
+            RenderTransformOrigin="0.5,0.5">
+            <Label.Effect>
+                <DropShadowEffect
+                    BlurRadius="2"
+                    Opacity="0.5"
+                    ShadowDepth="2" />
+            </Label.Effect>
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform />
+                    <SkewTransform />
+                    <RotateTransform Angle="-30" />
+                    <TranslateTransform />
+                </TransformGroup>
+            </Label.RenderTransform>
+        </Label>
     </Grid>
 </Window>

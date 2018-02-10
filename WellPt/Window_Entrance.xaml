@@ -62,60 +62,77 @@
             Fill="{DynamicResource Brush_BG}"
             Opacity="{Binding Ui_Mask_Opacity, Mode=OneWay}" />
         <StackPanel>
+            <TextBlock x:Name="txtb" TextWrapping="Wrap">place holder</TextBlock>
+            <WrapPanel>
+                <Image
+                    x:Name="imageR"
+                    Canvas.Left="335"
+                    Canvas.Top="95"
+                    Width="60"
+                    RenderTransformOrigin="0.5,0.5"
+                    Source="img/M_elf_2.png">
+                    <Image.RenderTransform>
+                        <RotateTransform Angle="0" />
+                    </Image.RenderTransform>
+                </Image>
+                <Canvas>
+                    <Image
+                    x:Name="ui_img1"
+                    Width="400"
+                    Height="150"
+                    Stretch="UniformToFill" />
+                    <Image
+                    x:Name="ui_img2"
+                    Width="400"
+                    Height="150"
+                    Stretch="UniformToFill" />
+                </Canvas>
+            </WrapPanel>
+            <WrapPanel>
+                <Image
+                x:Name="portrait"
+                Height="100"
+                Margin="0,0,0.333,0"
+                Source="img/E_Portrait_1.png" />
+                <Rectangle
+                x:Name="bindi"
+                Width="5"
+                Height="5"
+                Fill="{DynamicResource {x:Static SystemColors.MenuHighlightBrushKey}}"
+                Opacity="0" />
+            </WrapPanel>
             <wpf:ChromiumWebBrowser
                 Name="Browser"
                 Width="600"
                 Height="207"
                 Margin="29,0,28.333,0"
                 Address="https://www.youtube.com/embed/tuHqE3mQkQA" />
-            <Button
+            <WrapPanel>
+                <Button
                 Width="75"
                 Margin="50,0,0,0"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 Click="Button_Click"
                 Content="Button" />
-            <Button
+                <Button
                 Width="75"
                 Margin="50,10,0,0"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 Click="Button_Click1"
                 Content="Type" />
-            <Canvas>
-                <Rectangle
+                <Canvas>
+                    <Rectangle
                     x:Name="gogogo"
-                    Canvas.Left="400"
+                    Canvas.Left="200"
                     Width="96"
                     Height="31"
                     HorizontalAlignment="Center"
                     Fill="#FFF4F4F5"
                     Stroke="Black" />
-            </Canvas>
-            <TextBlock x:Name="txtb" TextWrapping="Wrap">place holder</TextBlock>
-            <Rectangle
-                x:Name="bindi"
-                Width="5"
-                Height="5"
-                Fill="{DynamicResource {x:Static SystemColors.MenuHighlightBrushKey}}"
-                Opacity="0" />
-            <Image
-                x:Name="portrait"
-                Height="100"
-                Margin="0,0,0.333,0"
-                Source="img/E_Portrait_1.png" />
-            <Canvas>
-                <Image
-                    x:Name="ui_img1"
-                    Width="400"
-                    Height="150"
-                    Stretch="UniformToFill" />
-                <Image
-                    x:Name="ui_img2"
-                    Width="400"
-                    Height="150"
-                    Stretch="UniformToFill" />
-            </Canvas>
+                </Canvas>
+            </WrapPanel>
         </StackPanel>
     </Grid>
 </Window>
