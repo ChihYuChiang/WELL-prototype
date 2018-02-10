@@ -20,11 +20,25 @@ namespace WellPt
     {
         public DataContainer WDataContainer = new DataContainer();
 
+
+        //--Constructor
         public Window_Entrance()
         {
             InitializeComponent();
-            this.DataContext = this.WDataContainer;
 
+            this.DataContext = this.WDataContainer;
+        }
+
+
+
+
+        /*
+        ------------------------------------------------------------
+        Events
+        ------------------------------------------------------------
+        */
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
             Storyboard sb3 = (this.FindResource("WindowOn") as Storyboard);
             Storyboard.SetTarget(sb3, this);
             sb3.Begin();

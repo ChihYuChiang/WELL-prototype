@@ -28,33 +28,39 @@ namespace WellPt
             Bt.Content = t;
         }
 
+
+
+
+        /*
+        ------------------------------------------------------------
+        Events
+        ------------------------------------------------------------
+        */
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Storyboard sb = (this.FindResource("WindowOff") as Storyboard);
             Storyboard.SetTarget(sb, this);
 
-            //--Anonymous function
-            //(object _sender, EventArgs _e) => this.Close()
-            //equals to
-            //lambda(object _sender, EventArgs _e) {this.Close()}
-            sb.Completed += (object _sender, EventArgs _e) =>
+            foreach (Window w in Application.Current.Windows)
             {
-                foreach (Window w in Application.Current.Windows)
+                Type[] targetArray =
                 {
-                    Type[] targetArray = 
-                    {
                         typeof(Window_Main),
                         typeof(Window_Entrance),
                         typeof(Window_World)
                     };
-                    if (targetArray.Contains(w.GetType()))
-                    {
-                        (w as Window_Main).WDataContainer.Ui_Mask_Opacity = 0.05;
-                        (w as Window_Main).WDataContainer.Ui_Mask_Zindex = 0;
-                    }
+                if (targetArray.Contains(w.GetType()))
+                {
+                    (w as Window_Main).WDataContainer.Ui_Mask_Opacity = 0.05;
+                    (w as Window_Main).WDataContainer.Ui_Mask_Zindex = 0;
                 }
-                this.Close();
-            };
+            }
+
+            //--Anonymous function
+            //(object _sender, EventArgs _e) => this.Close()
+            //equals to
+            //lambda(object _sender, EventArgs _e) {this.Close()}
+            sb.Completed += (object _sender, EventArgs _e) => { this.Close(); };
             sb.Begin();
         }
     }

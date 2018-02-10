@@ -18,7 +18,8 @@
     TextOptions.TextFormattingMode="Ideal"
     TextOptions.TextRenderingMode="Auto"
     WindowStartupLocation="CenterScreen"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    Loaded="Window_Loaded">
     <Window.Resources>
         <Storyboard x:Key="WindowOn" TargetProperty="Opacity">
             <StaticResourceExtension ResourceKey="App_FadeIn" />
@@ -61,7 +62,8 @@
             <wpf:ChromiumWebBrowser
                 Name="Browser"
                 Width="600"
-                Height="300"
+                Height="207"
+                Margin="29,0,28.333,0"
                 Address="https://www.youtube.com/embed/tuHqE3mQkQA" />
             <Button
                 Width="75"
@@ -98,6 +100,20 @@
                 Height="100"
                 Margin="0,0,0.333,0"
                 Source="img/E_Portrait_1.png" />
+            <Canvas>
+                <Image
+                    x:Name="img1"
+                    Width="400"
+                    Height="150"
+                    RenderTransformOrigin="0.5,0.5"
+                    Stretch="UniformToFill" />
+                <Image
+                    x:Name="img2"
+                    Width="400"
+                    Height="150"
+                    RenderTransformOrigin="0.5,0.5"
+                    Stretch="UniformToFill" />
+            </Canvas>
         </StackPanel>
     </Grid>
 </Window>

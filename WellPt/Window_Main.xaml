@@ -9,6 +9,7 @@
     Title="MainWindow"
     Width="525"
     Height="382.991"
+    Loaded="Window_Loaded"
     WindowStartupLocation="CenterScreen"
     FontFamily="{DynamicResource MaterialDesignFont}"
     TextElement.FontSize="13"

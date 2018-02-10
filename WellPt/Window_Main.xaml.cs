@@ -24,13 +24,26 @@ namespace WellPt
         public int CorrectCount { get; set; }
         public int CheckedOption { get; set; }
 
+
+        //--Constructor
         public Window_Main()
         {
             InitializeComponent();
             
             this.DataContext = this.WDataContainer;
             this.CorrectCount = 0;
+        }
 
+
+
+
+        /*
+        ------------------------------------------------------------
+        Events
+        ------------------------------------------------------------
+        */
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
             Storyboard sb = (this.FindResource("sbAnimateImage2") as Storyboard);
             sb.Begin();
             Storyboard sb2 = (this.FindResource("WindowOn") as Storyboard);

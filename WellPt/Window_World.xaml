@@ -9,6 +9,7 @@
     Width="651.333"
     Height="449.333"
     WindowStartupLocation="CenterScreen"
+    Loaded="Window_Loaded"
     mc:Ignorable="d">
     <Window.Resources>
         <Storyboard x:Key="WindowOn" Storyboard.TargetProperty="Opacity">
