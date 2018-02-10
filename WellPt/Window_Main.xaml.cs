@@ -44,11 +44,10 @@ namespace WellPt
         */
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Storyboard sb = (this.FindResource("sbAnimateImage2") as Storyboard);
+            Storyboard sb = (this.Resources["sbAnimateImage2"] as Storyboard);
             sb.Begin();
-            Storyboard sb2 = (this.FindResource("WindowOn") as Storyboard);
-            Storyboard.SetTarget(sb2, this);
-            sb2.Begin();
+            Storyboard sb2 = (this.Resources["WindowOn"] as Storyboard);
+            sb2.Begin(this);
 
             Binding bind_qId = new Binding("Id") { Source = dItem, Mode = BindingMode.OneWay, Converter = new Converter_QId() };
             Binding bind_qPrompt = new Binding("Prompt") { Source = dItem, Mode = BindingMode.OneWay };
@@ -66,7 +65,7 @@ namespace WellPt
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Storyboard sb1 = (this.FindResource("sbAnimateImage4") as Storyboard);
+            Storyboard sb1 = (this.Resources["sbAnimateImage4"] as Storyboard);
             sb1.Begin();
 
             ui_dItem_opt1.IsChecked = false;
@@ -86,7 +85,7 @@ namespace WellPt
                 return;
             }
             
-            Storyboard sb = (this.FindResource("sbAnimateImage") as Storyboard);
+            Storyboard sb = (this.Resources["sbAnimateImage"] as Storyboard);
             sb.Begin();
 
             dItem.Id += 1;

@@ -7,7 +7,9 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Animation;
+using System.Windows.Media.Imaging;
 using System.IO;
 using System.ComponentModel;
 using Microsoft.VisualBasic.FileIO;
@@ -50,7 +52,7 @@ namespace WellPt
 
         public static void TypewriteTextblock(Window window, string textToAnimate, TextBlock txt, TimeSpan timeSpan)
         {
-            Storyboard sb2 = window.FindResource("bindicate") as Storyboard;
+            Storyboard sb2 = window.Resources["bindicate"] as Storyboard;
             sb2.Stop();
 
             DiscreteStringKeyFrame discreteStringKeyFrame;
@@ -69,10 +71,23 @@ namespace WellPt
             Storyboard.SetTargetName(stringAnimationUsingKeyFrames, txt.Name);
             Storyboard.SetTargetProperty(stringAnimationUsingKeyFrames, new PropertyPath(TextBlock.TextProperty));
 
-            Storyboard sb = window.FindResource("story") as Storyboard;
+            Storyboard sb = window.Resources["story"] as Storyboard;
             sb.Children.Add(stringAnimationUsingKeyFrames);
 
             sb.Begin(txt);
+        }
+
+        public static List<ImageSource> GetImagesFromUris(string[] uris)
+        {
+            List<ImageSource> imgs = new List<ImageSource>();
+
+            foreach (string uri in uris)
+            {
+                ImageSource img = new BitmapImage(new Uri(uri, UriKind.Relative));
+                imgs.Add(img);
+            }
+
+            return imgs;
         }
     }
 

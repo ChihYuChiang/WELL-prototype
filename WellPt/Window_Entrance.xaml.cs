@@ -13,13 +13,19 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Media.Animation;
+using System.Windows.Threading;
 
 namespace WellPt
 {
     public partial class Window_Entrance : Window
     {
-        public DataContainer WDataContainer = new DataContainer();
+        private DispatcherTimer slide_change;
+        private Image[] slide_imgCtrls;
+        private List<ImageSource> slide_imgs;
+        private int slide_cSourceIndex, slide_cCtrlIndex = 0;
 
+        public DataContainer WDataContainer = new DataContainer();
+        
 
         //--Constructor
         public Window_Entrance()
@@ -27,6 +33,37 @@ namespace WellPt
             InitializeComponent();
 
             this.DataContext = this.WDataContainer;
+
+            string[] imgUris = { "img/M_cloud_1.png", "img/M_sun_1.png" };
+            this.slide_imgCtrls = new Image[] { ui_img1, ui_img2 };
+            this.slide_imgs = Util.GetImagesFromUris(imgUris);
+            this.slide_change = new DispatcherTimer();
+            this.slide_change.Interval = new TimeSpan(0, 0, 3);
+            this.slide_change.Tick += (object sender, EventArgs e) => { this.PlaySlideShow(); };
+        }
+
+
+
+
+        /*
+        ------------------------------------------------------------
+        Functions
+        ------------------------------------------------------------
+        */
+        private void PlaySlideShow()
+        {
+            var oldCtrlIndex = this.slide_cCtrlIndex;
+            this.slide_cCtrlIndex = (this.slide_cCtrlIndex + 1) % 2;
+            this.slide_cSourceIndex = (this.slide_cSourceIndex + 1) % this.slide_imgs.Count;
+
+            Image imgFadeOut = this.slide_imgCtrls[oldCtrlIndex];
+            Image imgFadeIn = this.slide_imgCtrls[this.slide_cCtrlIndex];
+            imgFadeIn.Source = this.slide_imgs[this.slide_cSourceIndex];
+
+            Storyboard StboardFadeOut = this.Resources["WindowOff"] as Storyboard;
+            StboardFadeOut.Begin(imgFadeOut);
+            Storyboard StboardFadeIn = this.Resources["WindowOn"] as Storyboard;
+            StboardFadeIn.Begin(imgFadeIn);
         }
 
 
@@ -39,14 +76,15 @@ namespace WellPt
         */
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Storyboard sb3 = (this.FindResource("WindowOn") as Storyboard);
-            Storyboard.SetTarget(sb3, this);
-            sb3.Begin();
+            this.slide_change.IsEnabled = true;
 
-            Storyboard sb = this.FindResource("sbAnimateImage") as Storyboard;
+            Storyboard sb3 = this.Resources["WindowOn"] as Storyboard;
+            sb3.Begin(this);
+            
+            Storyboard sb = this.Resources["sbAnimateImage"] as Storyboard;
             sb.Begin();
 
-            Storyboard sb2 = this.FindResource("bindicate") as Storyboard;
+            Storyboard sb2 = this.Resources["bindicate"] as Storyboard;
             sb2.Begin();
         }
 
@@ -65,7 +103,7 @@ namespace WellPt
 
         private void storyCompleted(object sender, EventArgs e)
         {
-            Storyboard sb = this.FindResource("bindicate") as Storyboard;
+            Storyboard sb = this.Resources["bindicate"] as Storyboard;
             sb.Begin();
         }
     }

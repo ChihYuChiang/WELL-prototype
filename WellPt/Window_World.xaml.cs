@@ -38,9 +38,8 @@ namespace WellPt
         */
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Storyboard sb = (this.FindResource("WindowOn") as Storyboard);
-            Storyboard.SetTarget(sb, this);
-            sb.Begin();
+            Storyboard sb = (this.Resources["WindowOn"] as Storyboard);
+            sb.Begin(this);
         }
     }
 }

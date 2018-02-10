@@ -12,17 +12,20 @@
     Height="587.579"
     Background="{DynamicResource MaterialDesignPaper}"
     FontFamily="{DynamicResource MaterialDesignFont}"
+    Loaded="Window_Loaded"
     TextElement.FontSize="13"
     TextElement.FontWeight="Regular"
     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
     TextOptions.TextFormattingMode="Ideal"
     TextOptions.TextRenderingMode="Auto"
     WindowStartupLocation="CenterScreen"
-    mc:Ignorable="d"
-    Loaded="Window_Loaded">
+    mc:Ignorable="d">
     <Window.Resources>
         <Storyboard x:Key="WindowOn" TargetProperty="Opacity">
             <StaticResourceExtension ResourceKey="App_FadeIn" />
+        </Storyboard>
+        <Storyboard x:Key="WindowOff" TargetProperty="Opacity">
+            <StaticResourceExtension ResourceKey="App_FadeOut" />
         </Storyboard>
         <Storyboard
             x:Key="story"
@@ -97,21 +100,20 @@
                 Fill="{DynamicResource {x:Static SystemColors.MenuHighlightBrushKey}}"
                 Opacity="0" />
             <Image
+                x:Name="portrait"
                 Height="100"
                 Margin="0,0,0.333,0"
                 Source="img/E_Portrait_1.png" />
             <Canvas>
                 <Image
-                    x:Name="img1"
+                    x:Name="ui_img1"
                     Width="400"
                     Height="150"
-                    RenderTransformOrigin="0.5,0.5"
                     Stretch="UniformToFill" />
                 <Image
-                    x:Name="img2"
+                    x:Name="ui_img2"
                     Width="400"
                     Height="150"
-                    RenderTransformOrigin="0.5,0.5"
                     Stretch="UniformToFill" />
             </Canvas>
         </StackPanel>

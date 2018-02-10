@@ -21,9 +21,8 @@ namespace WellPt
         {
             InitializeComponent();
 
-            Storyboard sb = (this.FindResource("WindowOn") as Storyboard);
-            Storyboard.SetTarget(sb, this);
-            sb.Begin();
+            Storyboard sb = (this.Resources["WindowOn"] as Storyboard);
+            sb.Begin(this);
 
             Bt.Content = t;
         }
@@ -38,7 +37,7 @@ namespace WellPt
         */
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Storyboard sb = (this.FindResource("WindowOff") as Storyboard);
+            Storyboard sb = (this.Resources["WindowOff"] as Storyboard);
             Storyboard.SetTarget(sb, this);
 
             foreach (Window w in Application.Current.Windows)
