@@ -74,7 +74,7 @@ namespace WellPt
             sb.Begin(textBlock);
         }
 
-        public static List<ImageSource> GetImagesFromUris(string[] uris)
+        public static List<ImageSource> GetImageFromUri(string[] uris)
         {
             List<ImageSource> imgs = new List<ImageSource>();
 
@@ -85,6 +85,11 @@ namespace WellPt
             }
 
             return imgs;
+        }
+
+        public static ImageSource GetImageFromUri(string uri)
+        {
+            return new BitmapImage(new Uri(uri, UriKind.Relative));
         }
     }
 
@@ -145,6 +150,7 @@ namespace WellPt
     {
         ///--Field and property
         private string dialogStr;
+        private string[] dialogStrs;
 
         public string BtnStr { get; set; }
         public ImageSource Portrait { get; set; }
@@ -161,6 +167,10 @@ namespace WellPt
                 }
             }
         }
+
+
+        ///--Method
+        
 
 
         ///--Constructor

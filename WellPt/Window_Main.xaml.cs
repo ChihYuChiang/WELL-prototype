@@ -69,7 +69,7 @@ namespace WellPt
                 WDataContainer.Ui_Mask_Opacity = 0.3;
 
                 ///Open notification window
-                ImageSource img = new BitmapImage(new Uri("img/M_elf_1sad.png", UriKind.Relative));
+                ImageSource img = Util.GetImageFromUri("img/M_elf_1sad.png");
                 Window_Notification note = new Window_Notification(img, "hello") { Owner = this };
                 note.ShowDialog();
                 return;

@@ -54,19 +54,25 @@
                 Canvas.Top="21"
                 Width="60"
                 Panel.ZIndex="1"
-                RenderTransformOrigin="0.5,0.5"
-                Source="{Binding Path=Portrait}">
+                RenderTransformOrigin="0.5,0.5">
                 <Image.RenderTransform>
                     <RotateTransform Angle="0" />
                 </Image.RenderTransform>
+                <Image.Source>
+                    <Binding Path="Portrait">
+                        <Binding.FallbackValue>
+                            <ImageSource>img/M_elf_1.png</ImageSource>
+                        </Binding.FallbackValue>
+                    </Binding>
+                </Image.Source>
             </Image>
             <TextBlock
                 Canvas.Left="101"
                 Canvas.Top="44"
                 Width="171"
                 Height="61"
-                TextWrapping="Wrap"
-                Text="{Binding Path=DialogStr, FallbackValue='System.Windows.Media.Animation;'}" />
+                Text="{Binding Path=DialogStr, FallbackValue='System.Windows.Media.Animation;'}"
+                TextWrapping="Wrap" />
             <Button
                 x:Name="Bt"
                 Canvas.Left="116"

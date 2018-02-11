@@ -37,7 +37,7 @@ namespace WellPt
 
             string[] imgUris = { "img/M_cloud_1.png", "img/M_sun_1.png" };
             this.slide_imgCtrls = new Image[] { ui_bgStory_1, ui_bgStory_2 };
-            this.slide_imgs = Util.GetImagesFromUris(imgUris);
+            this.slide_imgs = Util.GetImageFromUri(imgUris);
             this.slide_change = new DispatcherTimer();
             this.slide_change.Interval = new TimeSpan(0, 0, 3);
             this.slide_change.Tick += (object sender, EventArgs e) => { this.PlaySlideShow(); };
