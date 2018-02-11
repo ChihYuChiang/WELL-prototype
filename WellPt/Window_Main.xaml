@@ -38,16 +38,18 @@
                 Storyboard.TargetProperty="(Canvas.Top)"
                 Duration="00:00:02" />
         </Storyboard>
+        <local:Converter_QId x:Key="Converter_QId" />
+        <local:Converter_QOption x:Key="Converter_QOption" />
     </Window.Resources>
 
     <Grid>
         <Rectangle
             x:Name="ui_mask"
-            Panel.ZIndex="{Binding Ui_Mask_Zindex, Mode=OneWay}"
+            Panel.ZIndex="{Binding Path=WDataContainer.Ui_Mask_Zindex}"
             d:IsHidden="True"
             d:IsLocked="True"
             Fill="{DynamicResource Brush_BG}"
-            Opacity="{Binding Ui_Mask_Opacity, Mode=OneWay}" />
+            Opacity="{Binding Path=WDataContainer.Ui_Mask_Opacity}" />
         <StackPanel Margin="10">
             <Canvas>
                 <Image
@@ -70,9 +72,9 @@
                     </Image.RenderTransform>
                 </Image>
                 <Image
-                    x:Name="imageS"
-                    Canvas.Left="{Binding ElementName=ui_elf_1, Path=(Canvas.Left), Mode=OneWay}"
-                    Canvas.Top="{Binding ElementName=ui_elf_1, Path=(Canvas.Top), Mode=OneWay}"
+                    x:Name="ui_sun_1"
+                    Canvas.Left="{Binding ElementName=ui_elf_1, Path=(Canvas.Left)}"
+                    Canvas.Top="{Binding ElementName=ui_elf_1, Path=(Canvas.Top)}"
                     Width="20"
                     Panel.ZIndex="1"
                     RenderTransformOrigin="0.5,0.5"
@@ -128,37 +130,35 @@
                         <Label
                             Name="ui_dItem_id"
                             VerticalContentAlignment="Center"
+                            Content="{Binding Path=DItem.Id, Converter={StaticResource Converter_QId}, FallbackValue='Q1 of 5'}"
                             FontSize="10"
-                            Foreground="White">
-                            Q1 of 5
-                        </Label>
+                            Foreground="White" />
                     </Grid>
-                    <Label Name="ui_dItem_prompt" FontWeight="Bold">What important mineral is found in all foods in the Dairy Group?</Label>
+                    <Label
+                        Name="ui_dItem_prompt"
+                        Content="{Binding Path=DItem.Prompt, FallbackValue='please enter a string'}"
+                        FontWeight="Bold" />
                 </WrapPanel>
                 <RadioButton
                     Name="ui_dItem_opt1"
                     Checked="RadioButton_Checked"
-                    GroupName="ready">
-                    Vitamin C
-                </RadioButton>
+                    Content="{Binding Path=DItem.Options, Converter={StaticResource Converter_QOption}, ConverterParameter=1, FallbackValue='Apple juice'}"
+                    GroupName="ready" />
                 <RadioButton
                     Name="ui_dItem_opt2"
                     Checked="RadioButton_Checked"
-                    GroupName="ready">
-                    No
-                </RadioButton>
+                    Content="{Binding Path=DItem.Options, Converter={StaticResource Converter_QOption}, ConverterParameter=2, FallbackValue='Orange box'}"
+                    GroupName="ready" />
                 <RadioButton
                     Name="ui_dItem_opt3"
                     Checked="RadioButton_Checked"
-                    GroupName="ready">
-                    No tell
-                </RadioButton>
+                    Content="{Binding Path=DItem.Options, Converter={StaticResource Converter_QOption}, ConverterParameter=3, FallbackValue='Apple'}"
+                    GroupName="ready" />
                 <RadioButton
                     Name="ui_dItem_opt4"
                     Checked="RadioButton_Checked"
-                    GroupName="ready">
-                    Maybe
-                </RadioButton>
+                    Content="{Binding Path=DItem.Options, Converter={StaticResource Converter_QOption}, ConverterParameter=4, FallbackValue='Mango check out'}"
+                    GroupName="ready" />
             </StackPanel>
         </StackPanel>
     </Grid>

@@ -24,15 +24,14 @@ namespace WellPt
         private Image[] slide_imgCtrls;
         private List<ImageSource> slide_imgs;
         private int slide_cSourceIndex, slide_cCtrlIndex = 0;
-
+        
         public DataContainer WDataContainer = new DataContainer();
         
 
-        //--Constructor
+        ///--Constructor
         public Window_Entrance()
         {
             InitializeComponent();
-
             this.DataContext = this.WDataContainer;
 
             string[] imgUris = { "img/M_cloud_1.png", "img/M_sun_1.png" };
@@ -61,10 +60,8 @@ namespace WellPt
             Image imgFadeIn = this.slide_imgCtrls[this.slide_cCtrlIndex];
             imgFadeIn.Source = this.slide_imgs[this.slide_cSourceIndex];
 
-            Storyboard StboardFadeOut = appR["Sb_FadeOut"] as Storyboard;
-            StboardFadeOut.Begin(imgFadeOut);
-            Storyboard StboardFadeIn = appR["Sb_FadeIn"] as Storyboard;
-            StboardFadeIn.Begin(imgFadeIn);
+            (appR["Sb_FadeOut"] as Storyboard).Begin(imgFadeOut);
+            (appR["Sb_FadeIn"] as Storyboard).Begin(imgFadeIn);
         }
 
 
@@ -79,14 +76,9 @@ namespace WellPt
         {
             this.slide_change.IsEnabled = true;
 
-            Storyboard sb3 = appR["Sb_FadeIn"] as Storyboard;
-            sb3.Begin(this);
-            
-            Storyboard sb = this.Resources["sbAnimateImage"] as Storyboard;
-            sb.Begin();
-
-            Storyboard sb2 = appR["Sb_BIndicator"] as Storyboard;
-            sb2.Begin(ui_bIndicator);
+            (appR["Sb_FadeIn"] as Storyboard).Begin(this);
+            (appR["Sb_BIndicator"] as Storyboard).Begin(ui_bIndicator, true);
+            (this.Resources["sbAnimateImage"] as Storyboard).Begin();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -98,6 +90,8 @@ namespace WellPt
 
         private void Button_Click1(object sender, RoutedEventArgs e)
         {
+            (appR["Sb_BIndicator"] as Storyboard).Stop(ui_bIndicator);
+
             string t = "this is a testing string message.  is a testing string message.";
             Util.TypewriteTextblock(this, t, txtb, new TimeSpan(0, 0, 0, 0, t.Length / 10 * 1000));
         }

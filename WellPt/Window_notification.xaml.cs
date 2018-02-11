@@ -23,8 +23,7 @@ namespace WellPt
         {
             InitializeComponent();
 
-            Storyboard sb = (appR["Sb_FadeIn"] as Storyboard);
-            sb.Begin(this);
+            (appR["Sb_FadeIn"] as Storyboard).Begin(this);
 
             Bt.Content = t;
         }
@@ -39,24 +38,21 @@ namespace WellPt
         */
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Storyboard sb = (appR["Sb_FadeIn"] as Storyboard);
-            sb.Begin(this);
-            Storyboard sb2 = (appR["Sb_ConRotateS"] as Storyboard);
-            sb2.Begin(ui_elf_1);
+            (appR["Sb_FadeIn"] as Storyboard).Begin(this);
+            (appR["Sb_ConRotateS"] as Storyboard).Begin(ui_elf_1);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Storyboard sb = (appR["Sb_FadeOut"] as Storyboard);
-
+            ///Primary window unmask
             foreach (Window w in Application.Current.Windows)
             {
                 Type[] targetArray =
                 {
-                        typeof(Window_Main),
-                        typeof(Window_Entrance),
-                        typeof(Window_World)
-                    };
+                    typeof(Window_Main),
+                    typeof(Window_Entrance),
+                    typeof(Window_World)
+                };
                 if (targetArray.Contains(w.GetType()))
                 {
                     (w as Window_Main).WDataContainer.Ui_Mask_Opacity = 0.05;
@@ -64,10 +60,8 @@ namespace WellPt
                 }
             }
 
-            //--Anonymous function
-            //(object _sender, EventArgs _e) => this.Close()
-            //equals to
-            //lambda(object _sender, EventArgs _e) {this.Close()}
+            ///Window fadeout and close
+            Storyboard sb = (appR["Sb_FadeOut"] as Storyboard);
             sb.Completed += (object _sender, EventArgs _e) => { this.Close(); };
             sb.Begin(this);
         }

@@ -39,6 +39,14 @@
                     To="5"
                     Duration="00:00:01" />
             </Storyboard>
+            <Storyboard x:Key="Sb_HaloS">
+                <DoubleAnimation
+                    RepeatBehavior="Forever"
+                    Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.BlurRadius)"
+                    From="0"
+                    To="80"
+                    Duration="00:00:03" />
+            </Storyboard>
             <Storyboard x:Key="Sb_BIndicator">
                 <DoubleAnimation
                     AccelerationRatio="0.9"
@@ -53,15 +61,6 @@
                 x:Key="Sb_TypeWriter"
                 x:Shared="false"
                 FillBehavior="HoldEnd" />
-
-            <DoubleAnimation
-                x:Key="App_halo"
-                AutoReverse="True"
-                By="80"
-                RepeatBehavior="Forever"
-                Storyboard.TargetName="imageS"
-                Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.BlurRadius)"
-                Duration="00:00:00.50" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

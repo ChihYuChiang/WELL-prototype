@@ -18,21 +18,22 @@ namespace WellPt
 {
     public partial class Window_Main : Window
     {
+        ///--Field and property
         private ResourceDictionary appR = Application.Current.Resources;
-        private QItem dItem = new QItem(1);
+        private int correctCount, checkedOption = 0;
 
-        public DataContainer WDataContainer = new DataContainer();
-        public int CorrectCount { get; set; }
-        public int CheckedOption { get; set; }
+        public QItem DItem { get; set; }
+        public DataContainer WDataContainer { get; set; }
 
 
-        //--Constructor
+        ///--Constructor
         public Window_Main()
         {
             InitializeComponent();
-            
-            this.DataContext = this.WDataContainer;
-            this.CorrectCount = 0;
+
+            this.DataContext = this;
+            this.DItem = new QItem(1);
+            this.WDataContainer = new DataContainer();
         }
 
 
@@ -45,57 +46,44 @@ namespace WellPt
         */
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Storyboard sb = (appR["Sb_ConRotateS"] as Storyboard);
-            sb.Begin(ui_elf_1);
-            Storyboard sb2 = (appR["Sb_FadeIn"] as Storyboard);
-            sb2.Begin(this);
-
-            Binding bind_qId = new Binding("Id") { Source = dItem, Mode = BindingMode.OneWay, Converter = new Converter_QId() };
-            Binding bind_qPrompt = new Binding("Prompt") { Source = dItem, Mode = BindingMode.OneWay };
-            Binding bind_qOption1 = new Binding("Options") { Source = dItem, Mode = BindingMode.OneWay, Converter = new Converter_QOption(), ConverterParameter = 1 };
-            Binding bind_qOption2 = new Binding("Options") { Source = dItem, Mode = BindingMode.OneWay, Converter = new Converter_QOption(), ConverterParameter = 2 };
-            Binding bind_qOption3 = new Binding("Options") { Source = dItem, Mode = BindingMode.OneWay, Converter = new Converter_QOption(), ConverterParameter = 3 };
-            Binding bind_qOption4 = new Binding("Options") { Source = dItem, Mode = BindingMode.OneWay, Converter = new Converter_QOption(), ConverterParameter = 4 };
-            BindingOperations.SetBinding(ui_dItem_id, Label.ContentProperty, bind_qId);
-            BindingOperations.SetBinding(ui_dItem_prompt, Label.ContentProperty, bind_qPrompt);
-            BindingOperations.SetBinding(ui_dItem_opt1, Label.ContentProperty, bind_qOption1);
-            BindingOperations.SetBinding(ui_dItem_opt2, Label.ContentProperty, bind_qOption2);
-            BindingOperations.SetBinding(ui_dItem_opt3, Label.ContentProperty, bind_qOption3);
-            BindingOperations.SetBinding(ui_dItem_opt4, Label.ContentProperty, bind_qOption4);
+            (appR["Sb_FadeIn"] as Storyboard).Begin(this);
+            (appR["Sb_ConRotateS"] as Storyboard).Begin(ui_elf_1);
+            (appR["Sb_HaloS"] as Storyboard).Begin(ui_sun_1);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Storyboard sb1 = (this.Resources["sbAnimateImage4"] as Storyboard);
-            sb1.Begin();
+            (Resources["sbAnimateImage4"] as Storyboard).Begin();
 
             ui_dItem_opt1.IsChecked = false;
             ui_dItem_opt2.IsChecked = false;
             ui_dItem_opt3.IsChecked = false;
             ui_dItem_opt4.IsChecked = false;
 
-            if (CheckedOption == dItem.Answer) { CorrectCount += 1; }
+            if (checkedOption == DItem.Answer) { correctCount += 1; }
 
-            if (dItem.Id == DataContainer.QBook.Count - 1 || CorrectCount == 3)
+            if (DItem.Id == DataContainer.QBook.Count - 1 || correctCount == 3)
             {
-                this.WDataContainer.Ui_Mask_Zindex = 100;
-                this.WDataContainer.Ui_Mask_Opacity = 0.3;
+                ///Primary window mask
+                WDataContainer.Ui_Mask_Zindex = 100;
+                WDataContainer.Ui_Mask_Opacity = 0.3;
+
+                ///Open notification window
                 Window_Notification note = new Window_Notification("hello");
                 note.Owner = this;
                 note.ShowDialog();
                 return;
             }
             
-            Storyboard sb = (this.Resources["sbAnimateImage"] as Storyboard);
-            sb.Begin();
+            (Resources["sbAnimateImage"] as Storyboard).Begin();
 
-            dItem.Id += 1;
+            DItem.Id += 1;
         }
 
         private void RadioButton_Checked(object sender, RoutedEventArgs e)
         {
             Char[] charArray = (sender as RadioButton).Name.ToCharArray();
-            CheckedOption = (int)Char.GetNumericValue(charArray[charArray.Length - 1]);
+            checkedOption = (int)Char.GetNumericValue(charArray[charArray.Length - 1]);
         }
     }
 }

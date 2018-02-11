@@ -128,11 +128,11 @@ namespace WellPt
         }
 
 
-        //--Constructor
+        ///--Constructor
         public DataContainer() { this.Ui_Mask_Opacity = 0.1; this.Ui_Mask_Zindex = 0; }
 
 
-        //--Property change event handle
+        ///--Property change event handle
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propName)
         {
@@ -199,11 +199,11 @@ namespace WellPt
         }
 
 
-        //--Constructor
+        ///--Constructor
         public QItem(int id) { this.Id = id; }
 
 
-        //--Property change event handle
+        ///--Property change event handle
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propName)
         {
@@ -240,7 +240,7 @@ namespace WellPt
                               object parameter, System.Globalization.CultureInfo culture)
         {
             string[] options = (string[])value;
-            return options[(int)parameter - 1];
+            return options[System.Convert.ToInt16(parameter) - 1]; ///Have to use obvious system.convert as the value from XAML is not actually int
         }
 
         public object ConvertBack(object value, Type targetType,

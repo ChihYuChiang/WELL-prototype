@@ -22,7 +22,7 @@ namespace WellPt
         public DataContainer WDataContainer = new DataContainer();
 
 
-        //--Constructor
+        ///--Constructor
         public Window_World()
         {
             InitializeComponent();
@@ -40,8 +40,7 @@ namespace WellPt
         */
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Storyboard sb = (appR["Sb_FadeIn"] as Storyboard);
-            sb.Begin(this);
+            (appR["Sb_FadeIn"] as Storyboard).Begin(this);
         }
     }
 }
