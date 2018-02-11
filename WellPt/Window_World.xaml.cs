@@ -17,9 +17,10 @@ namespace WellPt
 {
     public partial class Window_World : Window
     {
+        ///--Field and property
         private ResourceDictionary appR = Application.Current.Resources;
         
-        public DataContainer WDataContainer = new DataContainer();
+        public Data_General WDataContainer { get; set; }
 
 
         ///--Constructor
@@ -27,6 +28,7 @@ namespace WellPt
         {
             InitializeComponent();
 
+            this.WDataContainer = new Data_General();
             this.DataContext = this.WDataContainer;
         }
 

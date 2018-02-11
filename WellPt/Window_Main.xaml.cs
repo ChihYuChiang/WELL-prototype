@@ -22,8 +22,8 @@ namespace WellPt
         private ResourceDictionary appR = Application.Current.Resources;
         private int correctCount, checkedOption = 0;
 
-        public QItem DItem { get; set; }
-        public DataContainer WDataContainer { get; set; }
+        public Data_QItem DItem { get; set; }
+        public Data_General WDataContainer { get; set; }
 
 
         ///--Constructor
@@ -32,8 +32,8 @@ namespace WellPt
             InitializeComponent();
 
             this.DataContext = this;
-            this.DItem = new QItem(1);
-            this.WDataContainer = new DataContainer();
+            this.DItem = new Data_QItem(1);
+            this.WDataContainer = new Data_General();
         }
 
 
@@ -62,21 +62,22 @@ namespace WellPt
 
             if (checkedOption == DItem.Answer) { correctCount += 1; }
 
-            if (DItem.Id == DataContainer.QBook.Count - 1 || correctCount == 3)
+            if (DItem.Id == Data_General.QBook.Count - 1 || correctCount == 3)
             {
                 ///Primary window mask
                 WDataContainer.Ui_Mask_Zindex = 100;
                 WDataContainer.Ui_Mask_Opacity = 0.3;
 
                 ///Open notification window
-                Window_Notification note = new Window_Notification("hello");
-                note.Owner = this;
+                ImageSource img = new BitmapImage(new Uri("img/M_elf_1sad.png", UriKind.Relative));
+                Window_Notification note = new Window_Notification(img, "hello") { Owner = this };
                 note.ShowDialog();
                 return;
             }
             
             (Resources["sbAnimateImage"] as Storyboard).Begin();
 
+            ///Next item
             DItem.Id += 1;
         }
 

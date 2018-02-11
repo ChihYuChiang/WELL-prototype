@@ -19,11 +19,11 @@ namespace WellPt
     public partial class App : Application {}
 
 
-
+    
 
     /*
     ------------------------------------------------------------
-    Utility functions
+    Utility methods
     ------------------------------------------------------------
     */
     public class Util
@@ -93,11 +93,12 @@ namespace WellPt
 
     /*
     ------------------------------------------------------------
-    Data
+    Data classes
     ------------------------------------------------------------
     */
-    public class DataContainer : INotifyPropertyChanged
+    public class Data_General: INotifyPropertyChanged
     {
+        ///--Field and property
         public static List<string[]> QBook = Util.ParseCSV(new StringReader(WellPt.Properties.Resources.QBook));
         private double ui_mask_opacity;
         private int ui_mask_zindex;
@@ -129,7 +130,7 @@ namespace WellPt
 
 
         ///--Constructor
-        public DataContainer() { this.Ui_Mask_Opacity = 0.1; this.Ui_Mask_Zindex = 0; }
+        public Data_General() { Ui_Mask_Opacity = 0.1; Ui_Mask_Zindex = 0; }
 
 
         ///--Property change event handle
@@ -140,8 +141,47 @@ namespace WellPt
         }
     }
 
-    public class QItem : INotifyPropertyChanged
+    public class Data_Notification : INotifyPropertyChanged
     {
+        ///--Field and property
+        private string dialogStr;
+
+        public string BtnStr { get; set; }
+        public ImageSource Portrait { get; set; }
+
+        public string DialogStr
+        {
+            get { return dialogStr; }
+            set
+            {
+                if (dialogStr != value)
+                {
+                    dialogStr = value;
+                    NotifyPropertyChanged("DialogStr");
+                }
+            }
+        }
+
+
+        ///--Constructor
+        public Data_Notification(ImageSource portrait, string btnStr)
+        {
+            Portrait = portrait;
+            BtnStr = btnStr;
+        }
+
+
+        ///--Property change event handle
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void NotifyPropertyChanged(string propName)
+        {
+            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
+        }
+    }
+
+    public class Data_QItem : INotifyPropertyChanged
+    {
+        ///--Field and property
         private int id;
         private string prompt;
         private string[] options;
@@ -159,17 +199,17 @@ namespace WellPt
                     this.id = value;
                     this.NotifyPropertyChanged("Id");
 
-                    this.Prompt = DataContainer.QBook[this.Id][1];
+                    this.Prompt = Data_General.QBook[this.Id][1];
                     this.Options = new string[]
                     {
-                        DataContainer.QBook[this.Id][2],
-                        DataContainer.QBook[this.Id][3],
-                        DataContainer.QBook[this.Id][4],
-                        DataContainer.QBook[this.Id][5]
+                        Data_General.QBook[this.Id][2],
+                        Data_General.QBook[this.Id][3],
+                        Data_General.QBook[this.Id][4],
+                        Data_General.QBook[this.Id][5]
                     };
-                    this.Image = DataContainer.QBook[this.Id][6];
-                    this.Answer = Int32.Parse(DataContainer.QBook[this.Id][7]);
-                    this.Feedback = DataContainer.QBook[this.Id][8];
+                    this.Image = Data_General.QBook[this.Id][6];
+                    this.Answer = Int32.Parse(Data_General.QBook[this.Id][7]);
+                    this.Feedback = Data_General.QBook[this.Id][8];
                 }
             }
         }
@@ -200,7 +240,7 @@ namespace WellPt
 
 
         ///--Constructor
-        public QItem(int id) { this.Id = id; }
+        public Data_QItem(int id) { this.Id = id; }
 
 
         ///--Property change event handle
@@ -224,7 +264,7 @@ namespace WellPt
         public object Convert(object value, Type targetType,
                               object parameter, System.Globalization.CultureInfo culture)
         {
-            return "Q" + value + " of " + (DataContainer.QBook.Count - 1).ToString();
+            return "Q" + value + " of " + (Data_General.QBook.Count - 1).ToString();
         }
 
         public object ConvertBack(object value, Type targetType,

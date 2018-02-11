@@ -19,13 +19,14 @@ namespace WellPt
 {
     public partial class Window_Entrance : Window
     {
+        ///--Field and property
         private ResourceDictionary appR = Application.Current.Resources;
         private DispatcherTimer slide_change;
         private Image[] slide_imgCtrls;
         private List<ImageSource> slide_imgs;
         private int slide_cSourceIndex, slide_cCtrlIndex = 0;
         
-        public DataContainer WDataContainer = new DataContainer();
+        public Data_General WDataContainer = new Data_General();
         
 
         ///--Constructor
@@ -47,7 +48,7 @@ namespace WellPt
 
         /*
         ------------------------------------------------------------
-        Functions
+        Methods
         ------------------------------------------------------------
         */
         private void PlaySlideShow()

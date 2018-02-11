@@ -12,20 +12,26 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Media.Animation;
+using System.ComponentModel;
 
 namespace WellPt
 {
     public partial class Window_Notification : Window
     {
+        ///--Field and property
         private ResourceDictionary appR = Application.Current.Resources;
 
-        public Window_Notification(string t)
+        public Data_Notification Notification { get; set; }
+
+
+        ///--Constructor
+        public Window_Notification(ImageSource portrait, string btnStr)
         {
             InitializeComponent();
 
-            (appR["Sb_FadeIn"] as Storyboard).Begin(this);
-
-            Bt.Content = t;
+            this.Notification = new Data_Notification(portrait, btnStr);
+            this.DataContext = this.Notification;
+            this.Notification.DialogStr = "gggggggggggggggggggggggg";
         }
 
 

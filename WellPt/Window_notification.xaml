@@ -55,7 +55,7 @@
                 Width="60"
                 Panel.ZIndex="1"
                 RenderTransformOrigin="0.5,0.5"
-                Source="img/M_elf_1.png">
+                Source="{Binding Path=Portrait}">
                 <Image.RenderTransform>
                     <RotateTransform Angle="0" />
                 </Image.RenderTransform>
@@ -65,14 +65,15 @@
                 Canvas.Top="44"
                 Width="171"
                 Height="61"
-                Text="testtesttest" />
+                TextWrapping="Wrap"
+                Text="{Binding Path=DialogStr, FallbackValue='System.Windows.Media.Animation;'}" />
             <Button
                 x:Name="Bt"
                 Canvas.Left="116"
                 Canvas.Top="131"
                 Width="89"
                 Click="Button_Click"
-                Content="Got you!"
+                Content="{Binding Path=BtnStr, FallbackValue='God job!'}"
                 RenderTransformOrigin="0.697,0.562" />
         </Canvas>
     </Grid>
