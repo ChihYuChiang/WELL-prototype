@@ -42,7 +42,7 @@
             Fill="{DynamicResource Brush_BG}"
             Opacity="{Binding Ui_Mask_Opacity, Mode=OneWay}" />
         <StackPanel>
-            <TextBlock x:Name="txtb" TextWrapping="Wrap">place holder</TextBlock>
+            <TextBlock x:Name="txtb" TextWrapping="Wrap">place holder hahahahahahaha</TextBlock>
             <WrapPanel>
                 <Image
                     x:Name="ui_elf_1"

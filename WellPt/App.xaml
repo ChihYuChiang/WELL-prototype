@@ -60,7 +60,8 @@
             <Storyboard
                 x:Key="Sb_TypeWriter"
                 x:Shared="false"
-                FillBehavior="HoldEnd" />
+                FillBehavior="Stop"
+                Storyboard.TargetProperty="Text" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -40,6 +40,8 @@ namespace WellPt
             this.slide_imgs = Util.GetImageFromUri(imgUris);
             this.slide_change = new DispatcherTimer();
             this.slide_change.Interval = new TimeSpan(0, 0, 3);
+
+            ///An anonymous function Subscribes the tick event
             this.slide_change.Tick += (object sender, EventArgs e) => { this.PlaySlideShow(); };
         }
 
@@ -70,7 +72,7 @@ namespace WellPt
 
         /*
         ------------------------------------------------------------
-        Event-delegated methods
+        Event method
         ------------------------------------------------------------
         */
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -92,9 +94,6 @@ namespace WellPt
         private void Button_Click1(object sender, RoutedEventArgs e)
         {
             (appR["Sb_BIndicator"] as Storyboard).Stop(ui_bIndicator);
-
-            string t = "this is a testing string message.  is a testing string message.";
-            Util.TypewriteTextblock(this, t, txtb, new TimeSpan(0, 0, 0, 0, t.Length / 10 * 1000));
         }
     }
 }

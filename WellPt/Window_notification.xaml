@@ -14,7 +14,8 @@
     ResizeMode="NoResize"
     WindowStartupLocation="CenterOwner"
     WindowStyle="None"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    MouseUp="Window_MouseUp">
     <Grid>
         <Rectangle
             Width="297"
@@ -59,7 +60,7 @@
                     <RotateTransform Angle="0" />
                 </Image.RenderTransform>
                 <Image.Source>
-                    <Binding Path="Portrait">
+                    <Binding Path="Notification.Portrait">
                         <Binding.FallbackValue>
                             <ImageSource>img/M_elf_1.png</ImageSource>
                         </Binding.FallbackValue>
@@ -67,11 +68,12 @@
                 </Image.Source>
             </Image>
             <TextBlock
+                x:Name="ui_dialog"
                 Canvas.Left="101"
                 Canvas.Top="44"
                 Width="171"
                 Height="61"
-                Text="{Binding Path=DStr, FallbackValue='System.Windows.Media.Animation;'}"
+                Text="{Binding Path=Notification.DStr, FallbackValue='System.Windows.Media.Animation;'}"
                 TextWrapping="Wrap" />
             <Button
                 x:Name="Bt"
@@ -79,7 +81,7 @@
                 Canvas.Top="131"
                 Width="89"
                 Click="Button_Click"
-                Content="{Binding Path=BtnStr, FallbackValue='God job!'}"
+                Content="{Binding Path=Notification.BtnStr, FallbackValue='God job!'}"
                 RenderTransformOrigin="0.697,0.562" />
         </Canvas>
     </Grid>

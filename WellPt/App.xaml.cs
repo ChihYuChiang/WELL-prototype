@@ -19,15 +19,39 @@ namespace WellPt
     public partial class App : Application {}
 
 
-    
+
 
     /*
     ------------------------------------------------------------
-    Utility methods
+    Utility class
     ------------------------------------------------------------
     */
     public struct Util
     {
+        public static void Typewrite(TextBlock textBlock, int typeSpeed = 10)
+        {
+            string targetText = textBlock.Text;
+            TimeSpan timeSpan = new TimeSpan(0, 0, 0, 0, targetText.Length / typeSpeed * 1000);
+            DiscreteStringKeyFrame discreteStringKeyFrame;
+            StringAnimationUsingKeyFrames stringAnimationUsingKeyFrames = new StringAnimationUsingKeyFrames();
+            stringAnimationUsingKeyFrames.Duration = new Duration(timeSpan);
+
+            string tmp = string.Empty;
+            foreach (char c in targetText)
+            {
+                discreteStringKeyFrame = new DiscreteStringKeyFrame();
+                discreteStringKeyFrame.KeyTime = KeyTime.Paced;
+                tmp += c;
+                discreteStringKeyFrame.Value = tmp;
+                stringAnimationUsingKeyFrames.KeyFrames.Add(discreteStringKeyFrame);
+            }
+
+            Storyboard sb = Application.Current.Resources["Sb_TypeWriter"] as Storyboard;
+            sb.Children.Add(stringAnimationUsingKeyFrames);
+
+            sb.Begin(textBlock, true);
+        }
+
         public static List<string[]> ParseCSV(StringReader text)
         {
             string[] fields;
@@ -48,30 +72,6 @@ namespace WellPt
             string line = parser.ReadLine();
 
             return parsedData;
-        }
-
-        public static void TypewriteTextblock(Window window, string textToAnimate, TextBlock textBlock, TimeSpan timeSpan)
-        {
-            DiscreteStringKeyFrame discreteStringKeyFrame;
-            StringAnimationUsingKeyFrames stringAnimationUsingKeyFrames = new StringAnimationUsingKeyFrames();
-            stringAnimationUsingKeyFrames.Duration = new Duration(timeSpan);
-
-            string tmp = string.Empty;
-            foreach (char c in textToAnimate)
-            {
-                discreteStringKeyFrame = new DiscreteStringKeyFrame();
-                discreteStringKeyFrame.KeyTime = KeyTime.Paced;
-                tmp += c;
-                discreteStringKeyFrame.Value = tmp;
-                stringAnimationUsingKeyFrames.KeyFrames.Add(discreteStringKeyFrame);
-            }
-            Storyboard.SetTargetName(stringAnimationUsingKeyFrames, textBlock.Name);
-            Storyboard.SetTargetProperty(stringAnimationUsingKeyFrames, new PropertyPath(TextBlock.TextProperty));
-
-            Storyboard sb = Application.Current.Resources["Sb_TypeWriter"] as Storyboard;
-            sb.Children.Add(stringAnimationUsingKeyFrames);
-
-            sb.Begin(textBlock);
         }
 
         public static List<ImageSource> GetImageFromUri(string[] uris)
@@ -98,7 +98,7 @@ namespace WellPt
 
     /*
     ------------------------------------------------------------
-    Data classes
+    Data class
     ------------------------------------------------------------
     */
     public class Data_General : INotifyPropertyChanged
@@ -163,14 +163,12 @@ namespace WellPt
                 {
                     dStr = value;
                     OnPropertyChanged("DStr");
-                    OnDStrChanged();
                 }
             }
         }
 
 
         ///--Method
-        
 
 
         ///--Constructor
@@ -185,8 +183,6 @@ namespace WellPt
                     BtnStr = "Hello";
                     break;
             }
-
-            DStr = DialogStrs[0];
         }
 
 
@@ -194,14 +190,7 @@ namespace WellPt
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propName)
         {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
-        }
-
-        public event EventHandler DStrChanged;
-        protected void OnDStrChanged()
-        {
-            EventHandler handler = DStrChanged;
-            handler?.Invoke(this, new EventArgs());
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
         }
     }
 
@@ -282,7 +271,7 @@ namespace WellPt
 
     /*
     ------------------------------------------------------------
-    Converters
+    Converter
     ------------------------------------------------------------
     */
     public class Converter_QId : IValueConverter
