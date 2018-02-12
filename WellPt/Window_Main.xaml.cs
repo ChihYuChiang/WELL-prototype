@@ -41,7 +41,7 @@ namespace WellPt
 
         /*
         ------------------------------------------------------------
-        Events
+        Event-delegated methods
         ------------------------------------------------------------
         */
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -69,8 +69,7 @@ namespace WellPt
                 WDataContainer.Ui_Mask_Opacity = 0.3;
 
                 ///Open notification window
-                ImageSource img = Util.GetImageFromUri("img/M_elf_1sad.png");
-                Window_Notification note = new Window_Notification(img, "hello") { Owner = this };
+                Window_Notification note = new Window_Notification("greeting") { Owner = this };
                 note.ShowDialog();
                 return;
             }

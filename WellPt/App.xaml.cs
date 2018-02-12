@@ -26,7 +26,7 @@ namespace WellPt
     Utility methods
     ------------------------------------------------------------
     */
-    public class Util
+    public struct Util
     {
         public static List<string[]> ParseCSV(StringReader text)
         {
@@ -101,7 +101,7 @@ namespace WellPt
     Data classes
     ------------------------------------------------------------
     */
-    public class Data_General: INotifyPropertyChanged
+    public class Data_General : INotifyPropertyChanged
     {
         ///--Field and property
         public static List<string[]> QBook = Util.ParseCSV(new StringReader(WellPt.Properties.Resources.QBook));
@@ -140,7 +140,7 @@ namespace WellPt
 
         ///--Property change event handle
         public event PropertyChangedEventHandler PropertyChanged;
-        public void NotifyPropertyChanged(string propName)
+        protected void NotifyPropertyChanged(string propName)
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
         }
@@ -149,21 +149,21 @@ namespace WellPt
     public class Data_Notification : INotifyPropertyChanged
     {
         ///--Field and property
-        private string dialogStr;
-        private string[] dialogStrs;
+        private string dStr;
 
-        public string BtnStr { get; set; }
         public ImageSource Portrait { get; set; }
-
-        public string DialogStr
+        public string[] DialogStrs { get; set; }
+        public string BtnStr { get; set; }
+        public string DStr
         {
-            get { return dialogStr; }
+            get { return dStr; }
             set
             {
-                if (dialogStr != value)
+                if (dStr != value)
                 {
-                    dialogStr = value;
-                    NotifyPropertyChanged("DialogStr");
+                    dStr = value;
+                    OnPropertyChanged("DStr");
+                    OnDStrChanged();
                 }
             }
         }
@@ -174,18 +174,34 @@ namespace WellPt
 
 
         ///--Constructor
-        public Data_Notification(ImageSource portrait, string btnStr)
+        public Data_Notification(string type)
         {
-            Portrait = portrait;
-            BtnStr = btnStr;
+            switch (type)
+            {
+                case "greeting":
+                default:
+                    Portrait = Util.GetImageFromUri("img/M_elf_1.png");
+                    DialogStrs = new string[] { "Hello, I am a cute elf!", "Nice to meet you.", "How are you doing recently?" };
+                    BtnStr = "Hello";
+                    break;
+            }
+
+            DStr = DialogStrs[0];
         }
 
 
         ///--Property change event handle
         public event PropertyChangedEventHandler PropertyChanged;
-        public void NotifyPropertyChanged(string propName)
+        protected void OnPropertyChanged(string propName)
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
+        }
+
+        public event EventHandler DStrChanged;
+        protected void OnDStrChanged()
+        {
+            EventHandler handler = DStrChanged;
+            handler?.Invoke(this, new EventArgs());
         }
     }
 
@@ -255,7 +271,7 @@ namespace WellPt
 
         ///--Property change event handle
         public event PropertyChangedEventHandler PropertyChanged;
-        public void NotifyPropertyChanged(string propName)
+        protected void NotifyPropertyChanged(string propName)
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
         }

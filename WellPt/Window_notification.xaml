@@ -71,7 +71,7 @@
                 Canvas.Top="44"
                 Width="171"
                 Height="61"
-                Text="{Binding Path=DialogStr, FallbackValue='System.Windows.Media.Animation;'}"
+                Text="{Binding Path=DStr, FallbackValue='System.Windows.Media.Animation;'}"
                 TextWrapping="Wrap" />
             <Button
                 x:Name="Bt"

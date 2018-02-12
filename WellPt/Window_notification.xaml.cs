@@ -25,13 +25,12 @@ namespace WellPt
 
 
         ///--Constructor
-        public Window_Notification(ImageSource portrait, string btnStr)
+        public Window_Notification(string type)
         {
             InitializeComponent();
 
-            this.Notification = new Data_Notification(portrait, btnStr);
+            this.Notification = new Data_Notification(type);
             this.DataContext = this.Notification;
-            this.Notification.DialogStr = "gggggggggggggggggggggggg";
         }
 
 
@@ -39,7 +38,7 @@ namespace WellPt
 
         /*
         ------------------------------------------------------------
-        Events
+        Event-delegated methods
         ------------------------------------------------------------
         */
         private void Window_Loaded(object sender, RoutedEventArgs e)
