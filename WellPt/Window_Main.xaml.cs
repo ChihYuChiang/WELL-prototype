@@ -69,7 +69,7 @@ namespace WellPt
                 WDataContainer.Ui_Mask_Opacity = 0.3;
 
                 ///Open notification window
-                Window_Notification note = new Window_Notification("greeting") { Owner = this };
+                Window_Notification note = new Window_Notification(NotificationType.greeting) { Owner = this };
                 note.ShowDialog();
                 return;
             }

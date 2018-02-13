@@ -146,6 +146,7 @@ namespace WellPt
         }
     }
 
+    public enum NotificationType { greeting, completion };
     public class Data_Notification : INotifyPropertyChanged
     {
         ///--Field and property
@@ -172,11 +173,11 @@ namespace WellPt
 
 
         ///--Constructor
-        public Data_Notification(string type)
+        public Data_Notification(NotificationType type)
         {
             switch (type)
             {
-                case "greeting":
+                case NotificationType.greeting:
                 default:
                     Portrait = Util.GetImageFromUri("img/M_elf_1.png");
                     DialogStrs = new string[] { "Hello, I am a cute elf!", "Nice to meet you.", "How are you doing recently?" };

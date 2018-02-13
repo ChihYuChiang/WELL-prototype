@@ -21,13 +21,12 @@ namespace WellPt
         ///--Field and property
         private int currentDialog = 0;
         private ResourceDictionary appR = Application.Current.Resources;
-        private Storyboard typewriter;
 
         public Data_Notification Notification { get; set; }
 
 
         ///--Constructor
-        public Window_Notification(string type)
+        public Window_Notification(NotificationType type)
         {
             InitializeComponent();
 
@@ -54,6 +53,7 @@ namespace WellPt
             ///Typewrite
             Util.Typewrite(ui_dialog);
         }
+
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
