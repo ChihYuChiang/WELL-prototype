@@ -28,30 +28,6 @@ namespace WellPt
     */
     public struct Util
     {
-        public static void Typewrite(TextBlock textBlock, int typeSpeed = 10)
-        {
-            string targetText = textBlock.Text;
-            TimeSpan timeSpan = new TimeSpan(0, 0, 0, 0, targetText.Length / typeSpeed * 1000);
-            DiscreteStringKeyFrame discreteStringKeyFrame;
-            StringAnimationUsingKeyFrames stringAnimationUsingKeyFrames = new StringAnimationUsingKeyFrames();
-            stringAnimationUsingKeyFrames.Duration = new Duration(timeSpan);
-
-            string tmp = string.Empty;
-            foreach (char c in targetText)
-            {
-                discreteStringKeyFrame = new DiscreteStringKeyFrame();
-                discreteStringKeyFrame.KeyTime = KeyTime.Paced;
-                tmp += c;
-                discreteStringKeyFrame.Value = tmp;
-                stringAnimationUsingKeyFrames.KeyFrames.Add(discreteStringKeyFrame);
-            }
-
-            Storyboard sb = Application.Current.Resources["Sb_TypeWriter"] as Storyboard;
-            sb.Children.Add(stringAnimationUsingKeyFrames);
-
-            sb.Begin(textBlock, true);
-        }
-
         public static List<string[]> ParseCSV(StringReader text)
         {
             string[] fields;
@@ -90,6 +66,59 @@ namespace WellPt
         public static ImageSource GetImageFromUri(string uri)
         {
             return new BitmapImage(new Uri(uri, UriKind.Relative));
+        }
+    }
+
+    public class TypeWriter
+    {
+        private string targetText;
+        private Storyboard sb;
+
+        public int TypeSpeed { get; set; }
+        public TextBlock TargetTextBlock { get; set; }
+        public string TargetText
+        {
+            get { return this.targetText; }
+            set
+            {
+                this.targetText = value;
+                this.sb = SetSb();
+            }
+        }
+
+        private Storyboard SetSb()
+        {
+            TimeSpan timeSpan = new TimeSpan(0, 0, 0, 0, this.TargetText.Length / this.TypeSpeed * 1000);
+            DiscreteStringKeyFrame discreteStringKeyFrame;
+            StringAnimationUsingKeyFrames stringAnimationUsingKeyFrames = new StringAnimationUsingKeyFrames();
+            stringAnimationUsingKeyFrames.Duration = new Duration(timeSpan);
+            Storyboard.SetTargetProperty(stringAnimationUsingKeyFrames, new PropertyPath(TextBlock.TextProperty));
+
+            string tmp = string.Empty;
+            foreach (char c in this.TargetText)
+            {
+                discreteStringKeyFrame = new DiscreteStringKeyFrame();
+                discreteStringKeyFrame.KeyTime = KeyTime.Paced;
+                tmp += c;
+                discreteStringKeyFrame.Value = tmp;
+                stringAnimationUsingKeyFrames.KeyFrames.Add(discreteStringKeyFrame);
+            }
+
+            Storyboard sb = Application.Current.Resources["Sb_TypeWriter"] as Storyboard;
+            sb.Children.Add(stringAnimationUsingKeyFrames);
+
+            return sb;
+        }
+
+        public void StartTypewrite()
+        {
+            sb.Begin(this.TargetTextBlock);
+        }
+
+        public TypeWriter(TextBlock targetTextBlock, int typeSpeed=15)
+        {
+            this.TypeSpeed = typeSpeed;
+            this.TargetTextBlock = targetTextBlock;
         }
     }
 

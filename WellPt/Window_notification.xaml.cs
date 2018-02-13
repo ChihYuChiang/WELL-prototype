@@ -20,6 +20,7 @@ namespace WellPt
     {
         ///--Field and property
         private int currentDialog = 0;
+        private TypeWriter typeWriter;
         private ResourceDictionary appR = Application.Current.Resources;
 
         public Data_Notification Notification { get; set; }
@@ -51,7 +52,9 @@ namespace WellPt
             Notification.DStr = Notification.DialogStrs[currentDialog];
 
             ///Typewrite
-            Util.Typewrite(ui_dialog);
+            typeWriter = new TypeWriter(ui_dialog);
+            typeWriter.TargetText = Notification.DStr;
+            typeWriter.StartTypewrite();
         }
 
 
@@ -83,9 +86,10 @@ namespace WellPt
 
         private void Window_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            Notification.DStr = Notification.DialogStrs[currentDialog += 1];
-
-            Util.Typewrite(ui_dialog);
+            currentDialog += 1;
+            Notification.DStr = Notification.DialogStrs[currentDialog];
+            typeWriter.TargetText = Notification.DStr;
+            typeWriter.StartTypewrite();
         }
     }
 }
