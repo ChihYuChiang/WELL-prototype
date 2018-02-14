@@ -73,7 +73,7 @@ namespace WellPt
         private string targetText;
         private Storyboard sb;
 
-        public int TypeSpeed { get; set; }
+        public double TypeSpeed { get; set; }
         public TextBlock TargetTextBlock { get; set; }
         public string TargetText
         {
@@ -89,12 +89,12 @@ namespace WellPt
         ///--Method
         private Storyboard SetSb()
         {
-            TimeSpan timeSpan = new TimeSpan(0, 0, 0, 0, this.TargetText.Length / this.TypeSpeed * 1000);
+            TimeSpan timeSpan = new TimeSpan(0, 0, 0, 0, Convert.ToInt32(this.TargetText.Length / this.TypeSpeed * 1000));
             DiscreteStringKeyFrame discreteStringKeyFrame;
             StringAnimationUsingKeyFrames stringAnimationUsingKeyFrames = new StringAnimationUsingKeyFrames();
             stringAnimationUsingKeyFrames.Duration = new Duration(timeSpan);
             Storyboard.SetTargetProperty(stringAnimationUsingKeyFrames, new PropertyPath(TextBlock.TextProperty));
-
+            
             string tmp = string.Empty;
             foreach (char c in this.TargetText)
             {
@@ -118,7 +118,7 @@ namespace WellPt
 
 
         ///--Constructor
-        public TypeWriter(TextBlock targetTextBlock, int typeSpeed=15)
+        public TypeWriter(TextBlock targetTextBlock, double typeSpeed=15.00)
         {
             this.TypeSpeed = typeSpeed;
             this.TargetTextBlock = targetTextBlock;
