@@ -86,10 +86,17 @@ namespace WellPt
 
         private void Window_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            currentDialog += 1;
-            Notification.DStr = Notification.DialogStrs[currentDialog];
-            typeWriter.TargetText = Notification.DStr;
-            typeWriter.StartTypewrite();
+            if (typeWriter.GetStatus() == ClockState.Active)
+            {
+                typeWriter.FillTypewrite();
+            }
+            else
+            {
+                currentDialog += 1;
+                Notification.DStr = Notification.DialogStrs[currentDialog];
+                typeWriter.TargetText = Notification.DStr;
+                typeWriter.StartTypewrite();
+            }
         }
     }
 }

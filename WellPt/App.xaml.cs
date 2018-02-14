@@ -113,7 +113,17 @@ namespace WellPt
 
         public void StartTypewrite()
         {
-            sb.Begin(this.TargetTextBlock);
+            sb.Begin(this.TargetTextBlock, true);
+        }
+
+        public void FillTypewrite()
+        {
+            sb.SkipToFill(this.TargetTextBlock);
+        }
+
+        public ClockState GetStatus()
+        {
+            return sb.GetCurrentState(this.TargetTextBlock);
         }
 
 
@@ -226,13 +236,11 @@ namespace WellPt
                 case NotificationType.greeting:
                 default:
                     Portrait = Util.GetImageFromUri("img/M_elf_1.png");
-                    //DialogStrs = new string[] { "Hello, I am a cute elf!", "Nice to meet you.", "How are you doing recently?" };
-                    DialogStrs = new string[] { "Hello", "Nice", "How" };
-                    //IEnumerable<string[]> tmp = from strItem in Data_General.StrBook
-                    //                            where strItem.Sid == "note_1"
-                    //                            select strItem.Content;
+                    IEnumerable<string[]> tmp = from strItem in Data_General.StrBook
+                                                where strItem.Sid == "note_2"
+                                                select strItem.Content;
 
-                    //DialogStrs = tmp.FirstOrDefault().ToArray();
+                    DialogStrs = tmp.FirstOrDefault().ToArray();
                     BtnStr = "Hello";
                     break;
             }
