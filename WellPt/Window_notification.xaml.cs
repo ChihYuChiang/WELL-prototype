@@ -40,7 +40,7 @@ namespace WellPt
 
         /*
         ------------------------------------------------------------
-        Event method
+        Event handler
         ------------------------------------------------------------
         */
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -51,8 +51,8 @@ namespace WellPt
             ///Initialize the dialog with the first string
             Notification.DStr = Notification.DialogStrs[currentDialog];
 
-            ///Typewrite
-            typeWriter = new TypeWriter(ui_dialog);
+            ///Typewriter
+            typeWriter = new TypeWriter(ui_dialog, handler_typewriterStateChanged);
             typeWriter.TargetText = Notification.DStr;
             typeWriter.StartTypewrite();
         }
@@ -96,6 +96,20 @@ namespace WellPt
                 Notification.DStr = Notification.DialogStrs[currentDialog];
                 typeWriter.TargetText = Notification.DStr;
                 typeWriter.StartTypewrite();
+            }
+        }
+
+        private void handler_typewriterStateChanged(object sender, EventArgs e)
+        {
+            switch (typeWriter.GetStatus())
+            {
+                case ClockState.Active:
+                    (appR["Sb_BIndicator"] as Storyboard).Stop(ui_bIndicator);
+                    break;
+                case ClockState.Filling:
+                case ClockState.Stopped:
+                    (appR["Sb_BIndicator"] as Storyboard).Begin(ui_bIndicator, true);
+                    break;
             }
         }
     }

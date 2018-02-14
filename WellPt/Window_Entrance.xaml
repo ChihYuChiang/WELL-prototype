@@ -74,12 +74,6 @@
                     Height="100"
                     Margin="0,0,0.333,0"
                     Source="img/E_Portrait_1.png" />
-                <Rectangle
-                    x:Name="ui_bIndicator"
-                    Width="5"
-                    Height="5"
-                    Fill="{DynamicResource {x:Static SystemColors.MenuHighlightBrushKey}}"
-                    Opacity="0" />
             </WrapPanel>
             <wpf:ChromiumWebBrowser
                 Name="Browser"
@@ -95,13 +89,6 @@
                     VerticalAlignment="Top"
                     Click="Button_Click"
                     Content="Button" />
-                <Button
-                    Width="75"
-                    Margin="50,10,0,0"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    Click="Button_Click1"
-                    Content="Type" />
                 <Canvas>
                     <Rectangle
                         x:Name="gogogo"

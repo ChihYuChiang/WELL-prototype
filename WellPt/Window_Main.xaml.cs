@@ -41,7 +41,7 @@ namespace WellPt
 
         /*
         ------------------------------------------------------------
-        Event method
+        Event handler
         ------------------------------------------------------------
         */
         private void Window_Loaded(object sender, RoutedEventArgs e)

@@ -71,6 +71,7 @@ namespace WellPt
     {
         ///--Field and property
         private string targetText;
+        private EventHandler stateChagedHandler;
         private Storyboard sb;
 
         public double TypeSpeed { get; set; }
@@ -82,6 +83,7 @@ namespace WellPt
             {
                 this.targetText = value;
                 this.sb = SetSb();
+                this.sb.CurrentStateInvalidated += this.stateChagedHandler;
             }
         }
 
@@ -128,10 +130,11 @@ namespace WellPt
 
 
         ///--Constructor
-        public TypeWriter(TextBlock targetTextBlock, double typeSpeed=15.00)
+        public TypeWriter(TextBlock targetTextBlock, EventHandler eventHandler, double typeSpeed=15.00)
         {
             this.TypeSpeed = typeSpeed;
             this.TargetTextBlock = targetTextBlock;
+            this.stateChagedHandler = eventHandler;
         }
     }
 
@@ -222,7 +225,7 @@ namespace WellPt
                 if (dStr != value)
                 {
                     dStr = value;
-                    OnPropertyChanged("DStr");
+                    NotifyPropertyChanged("DStr");
                 }
             }
         }
@@ -249,7 +252,7 @@ namespace WellPt
 
         ///--Property change event handle
         public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged(string propName)
+        protected void NotifyPropertyChanged(string propName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
         }

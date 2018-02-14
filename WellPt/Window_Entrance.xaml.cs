@@ -72,7 +72,7 @@ namespace WellPt
 
         /*
         ------------------------------------------------------------
-        Event method
+        Event handler
         ------------------------------------------------------------
         */
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -80,7 +80,6 @@ namespace WellPt
             this.slide_change.IsEnabled = true;
 
             (appR["Sb_FadeIn"] as Storyboard).Begin(this);
-            (appR["Sb_BIndicator"] as Storyboard).Begin(ui_bIndicator, true);
             (this.Resources["sbAnimateImage"] as Storyboard).Begin();
         }
 
@@ -89,11 +88,6 @@ namespace WellPt
             Window_Main main = new Window_Main();
             main.Show();
             this.Close();
-        }
-
-        private void Button_Click1(object sender, RoutedEventArgs e)
-        {
-            (appR["Sb_BIndicator"] as Storyboard).Stop(ui_bIndicator);
         }
     }
 }

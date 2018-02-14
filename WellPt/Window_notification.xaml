@@ -73,7 +73,7 @@
                 Canvas.Top="44"
                 Width="171"
                 Height="61"
-                Text="{Binding Path=Notification.DStr, FallbackValue='System.Windows.Media.Animation;'}"
+                Text="{Binding Notification.DStr, FallbackValue=System.Windows.Media.Animation;}"
                 TextWrapping="Wrap" />
             <Button
                 x:Name="Bt"
@@ -81,8 +81,13 @@
                 Canvas.Top="131"
                 Width="89"
                 Click="Button_Click"
-                Content="{Binding Path=Notification.BtnStr, FallbackValue='God job!'}"
+                Content="{Binding Notification.BtnStr, FallbackValue=God job!}"
                 RenderTransformOrigin="0.697,0.562" />
+            <Rectangle
+                x:Name="ui_bIndicator"
+                Width="5"
+                Height="5"
+                Canvas.Left="267" Canvas.Top="100" RadiusX="1.5" RadiusY="1.5" Opacity="0" Fill="{DynamicResource Brush_BaseColor_3}" />
         </Canvas>
     </Grid>
 </Window>
