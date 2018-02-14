@@ -52,7 +52,7 @@ namespace WellPt
             Notification.DStr = Notification.DialogStrs[currentDialog];
 
             ///Typewrite
-            typeWriter = new TypeWriter(ui_dialog);
+            typeWriter = new TypeWriter(ui_dialog, 15);
             typeWriter.TargetText = Notification.DStr;
             typeWriter.StartTypewrite();
         }

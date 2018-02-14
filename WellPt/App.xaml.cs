@@ -45,8 +45,6 @@ namespace WellPt
 
             parser.Close();
 
-            string line = parser.ReadLine();
-
             return parsedData;
         }
 
@@ -71,6 +69,7 @@ namespace WellPt
 
     public class TypeWriter
     {
+        ///--Field and property
         private string targetText;
         private Storyboard sb;
 
@@ -86,6 +85,8 @@ namespace WellPt
             }
         }
 
+
+        ///--Method
         private Storyboard SetSb()
         {
             TimeSpan timeSpan = new TimeSpan(0, 0, 0, 0, this.TargetText.Length / this.TypeSpeed * 1000);
@@ -115,6 +116,8 @@ namespace WellPt
             sb.Begin(this.TargetTextBlock);
         }
 
+
+        ///--Constructor
         public TypeWriter(TextBlock targetTextBlock, int typeSpeed=15)
         {
             this.TypeSpeed = typeSpeed;
@@ -133,7 +136,8 @@ namespace WellPt
     public class Data_General : INotifyPropertyChanged
     {
         ///--Field and property
-        public static List<string[]> QBook = Util.ParseCSV(new StringReader(WellPt.Properties.Resources.QBook));
+        public readonly static List<string[]> QBook = Util.ParseCSV(new StringReader(WellPt.Properties.Resources.QBook));
+        public readonly static List<Data_StrItem> StrBook = initializeStrBook();
         private double ui_mask_opacity;
         private int ui_mask_zindex;
 
@@ -160,6 +164,22 @@ namespace WellPt
                     this.NotifyPropertyChanged("Ui_Mask_Zindex");
                 }
             }
+        }
+
+
+        ///--Method
+        private static List<Data_StrItem> initializeStrBook()
+        {
+            List<Data_StrItem> strBook = new List<Data_StrItem>();
+            List<string[]> rawStrBook = Util.ParseCSV(new StringReader(WellPt.Properties.Resources.StringBook));
+
+            foreach (string[] item in rawStrBook)
+            {
+                string itemSid = item[0];
+                string[] itemContent = item.Skip(1).ToArray(); ///LINQ
+                strBook.Add(new Data_StrItem(itemSid, itemContent));
+            }
+            return strBook;
         }
 
 
@@ -198,9 +218,6 @@ namespace WellPt
         }
 
 
-        ///--Method
-
-
         ///--Constructor
         public Data_Notification(NotificationType type)
         {
@@ -209,7 +226,13 @@ namespace WellPt
                 case NotificationType.greeting:
                 default:
                     Portrait = Util.GetImageFromUri("img/M_elf_1.png");
-                    DialogStrs = new string[] { "Hello, I am a cute elf!", "Nice to meet you.", "How are you doing recently?" };
+                    //DialogStrs = new string[] { "Hello, I am a cute elf!", "Nice to meet you.", "How are you doing recently?" };
+                    DialogStrs = new string[] { "Hello", "Nice", "How" };
+                    //IEnumerable<string[]> tmp = from strItem in Data_General.StrBook
+                    //                            where strItem.Sid == "note_1"
+                    //                            select strItem.Content;
+
+                    //DialogStrs = tmp.FirstOrDefault().ToArray();
                     BtnStr = "Hello";
                     break;
             }
@@ -296,6 +319,23 @@ namespace WellPt
         }
     }
 
+    public class Data_StrItem
+    {
+        ///--Field and property
+        private string sid;
+        private string[] content;
+
+        public string Sid { get { return this.sid; } }
+        public string[] Content { get { return this.content; } }
+
+
+        ///--Constructor
+        public Data_StrItem( string rsid, string[] rcontent )
+        {
+            this.sid = rsid;
+            this.content = rcontent;
+        }
+    }
 
 
 
