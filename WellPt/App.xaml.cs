@@ -153,7 +153,7 @@ namespace WellPt
 
     /*
     ------------------------------------------------------------
-    Commands
+    Command class
     ------------------------------------------------------------
     */
     public class Command_CloseWindow
@@ -165,8 +165,11 @@ namespace WellPt
         ///--Method
         public static void executed(object sender, ExecutedRoutedEventArgs e)
         {
-            //MessageBox.Show("test");
-            Window.GetWindow(e.Source as Button).Close();
+            Window currentWindow = Window.GetWindow(e.Source as Button);
+
+            Storyboard sb = Application.Current.Resources["Sb_FadeOut"] as Storyboard;
+            sb.Completed += (object _sender, EventArgs _e) => { currentWindow.Close(); };
+            sb.Begin(currentWindow);
         }
 
         public static void canExecute(object sender, CanExecuteRoutedEventArgs e)
