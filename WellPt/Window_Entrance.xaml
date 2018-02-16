@@ -41,11 +41,12 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Rectangle
-            Grid.Column="1"
             x:Name="ui_mask"
-            Panel.ZIndex="{Binding Ui_Mask_Zindex, Mode=OneWay}"
-            Fill="{DynamicResource Brush_BG}"
-            Opacity="{Binding Ui_Mask_Opacity, Mode=OneWay}" d:IsLocked="True" />
+            Grid.Column="1"
+            Panel.ZIndex="{Binding Ui_Mask_Zindex}"
+            d:IsLocked="True"
+            Fill="{Binding Ui_Mask_Fill, FallbackValue={StaticResource Brush_BG}}"
+            Opacity="{Binding Ui_Mask_Opacity}" />
         <Grid Grid.Column="1">
             <Rectangle
                 x:Name="ui_menuBg"

@@ -17,9 +17,8 @@
         <Rectangle
             x:Name="ui_mask"
             Panel.ZIndex="{Binding Ui_Mask_Zindex, Mode=OneWay}"
-            d:IsHidden="True"
             d:IsLocked="True"
-            Fill="{DynamicResource Brush_BG}"
+            Fill="{Binding WDataContainer.Ui_Mask_Fill}"
             Opacity="{Binding Ui_Mask_Opacity, Mode=OneWay}" />
         <Grid>
             <Rectangle
