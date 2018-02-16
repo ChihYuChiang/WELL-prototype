@@ -52,26 +52,26 @@
             d:IsLocked="True"
             Fill="{DynamicResource Brush_BG}"
             Opacity="{Binding WDataContainer.Ui_Mask_Opacity}" />
-        <Grid x:Name="ui_menu">
+        <Grid>
             <Rectangle
-                x:Name="ui_menuBg"
-                Height="22.5"
-                VerticalAlignment="Top"
-                Fill="{DynamicResource Brush_BaseColor_5}" />
+                    x:Name="ui_menuBg"
+                    Height="22.5"
+                    VerticalAlignment="Top"
+                    Fill="{DynamicResource Brush_BaseColor_5}" />
             <Button
-                Width="25"
-                Height="22.5"
-                Padding="1,1,1,1"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Top"
-                VerticalContentAlignment="Center"
-                Background="{DynamicResource Brush_BaseColor_5}"
-                BorderBrush="{x:Null}"
-                Command="{Binding RCmd, Source={StaticResource Cmd_CloseWindow}}"
-                Content="X"
-                FontFamily="Arial Rounded MT Bold"
-                FontSize="14"
-                Opacity="0.5" />
+                    Width="25"
+                    Height="22.5"
+                    Padding="1,1,1,1"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    VerticalContentAlignment="Center"
+                    Background="{DynamicResource Brush_BaseColor_5}"
+                    BorderBrush="{x:Null}"
+                    Command="{Binding RCmd, Source={StaticResource Cmd_CloseWindow}}"
+                    Content="X"
+                    FontFamily="Arial Rounded MT Bold"
+                    FontSize="14"
+                    Opacity="0.5" />
         </Grid>
         <StackPanel Margin="10">
             <Canvas>

@@ -8,8 +8,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:wpf="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
     Title="Window1"
-    Width="663.92"
+    Width="658.254"
     Height="587.579"
+    AllowsTransparency="True"
     Background="{DynamicResource MaterialDesignPaper}"
     FontFamily="{DynamicResource MaterialDesignFont}"
     Loaded="Window_Loaded"
@@ -19,6 +20,7 @@
     TextOptions.TextFormattingMode="Ideal"
     TextOptions.TextRenderingMode="Auto"
     WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
     mc:Ignorable="d">
     <Window.Resources>
         <Storyboard x:Key="sbAnimateImage">
@@ -41,65 +43,115 @@
             d:IsLocked="True"
             Fill="{DynamicResource Brush_BG}"
             Opacity="{Binding Ui_Mask_Opacity, Mode=OneWay}" />
-        <StackPanel>
-            <TextBlock x:Name="txtb" TextWrapping="Wrap">place holder hahahahahahaha</TextBlock>
-            <WrapPanel>
-                <Image
-                    x:Name="ui_elf_1"
-                    Canvas.Left="335"
-                    Canvas.Top="95"
-                    Width="60"
-                    RenderTransformOrigin="0.5,0.5"
-                    Source="img/M_elf_2.png">
-                    <Image.RenderTransform>
-                        <RotateTransform Angle="0" />
-                    </Image.RenderTransform>
-                </Image>
-                <Canvas>
-                    <Image
-                        x:Name="ui_bgStory_1"
-                        Width="400"
-                        Height="150"
-                        Stretch="UniformToFill" />
-                    <Image
-                        x:Name="ui_bgStory_2"
-                        Width="400"
-                        Height="150"
-                        Stretch="UniformToFill" />
-                </Canvas>
-            </WrapPanel>
-            <WrapPanel>
-                <Image
-                    x:Name="portrait"
-                    Height="100"
-                    Margin="0,0,0.333,0"
-                    Source="img/E_Portrait_1.png" />
-            </WrapPanel>
+        <Grid>
+            <Rectangle
+                x:Name="ui_menuBg"
+                Height="22.5"
+                VerticalAlignment="Top"
+                Fill="{DynamicResource Brush_BaseColor_5}" />
+            <Button
+                Width="25"
+                Height="22.5"
+                Padding="1,1,1,1"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                VerticalContentAlignment="Center"
+                Background="{DynamicResource Brush_BaseColor_5}"
+                BorderBrush="{x:Null}"
+                Command="{Binding RCmd, Source={StaticResource Cmd_CloseWindow}}"
+                Content="X"
+                FontFamily="Arial Rounded MT Bold"
+                FontSize="14"
+                Opacity="0.5" />
+        </Grid>
+        <Canvas>
+            <Rectangle
+                Canvas.Left="-177"
+                Canvas.Top="28"
+                Width="196"
+                Height="82"
+                Fill="{DynamicResource Brush_BaseColor_1}"
+                RadiusX="5"
+                RadiusY="5" />
+            <Rectangle
+                Canvas.Left="3"
+                Canvas.Top="73"
+                Width="20"
+                Height="20"
+                Fill="{DynamicResource Brush_BaseColor_1}"
+                RenderTransformOrigin="0.5,0.5">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform />
+                        <SkewTransform />
+                        <RotateTransform Angle="-60" />
+                        <TranslateTransform />
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+            </Rectangle>
+            <TextBlock
+                x:Name="txtb"
+                Canvas.Left="-167"
+                Canvas.Top="39"
+                TextWrapping="Wrap">
+                place holder hahahahahahaha
+            </TextBlock>
+            <Image
+                x:Name="ui_elf_1"
+                Canvas.Left="28"
+                Canvas.Top="28"
+                Width="60"
+                RenderTransformOrigin="0.5,0.5"
+                Source="img/M_elf_2.png">
+                <Image.RenderTransform>
+                    <RotateTransform Angle="0" />
+                </Image.RenderTransform>
+            </Image>
+            <Image
+                x:Name="ui_bgStory_1"
+                Canvas.Left="168"
+                Canvas.Top="39"
+                Width="400"
+                Height="150"
+                Stretch="UniformToFill" />
+            <Image
+                x:Name="ui_bgStory_2"
+                Canvas.Left="168"
+                Canvas.Top="39"
+                Width="400"
+                Height="150"
+                Stretch="UniformToFill" />
+
+            <Image
+                x:Name="portrait"
+                Canvas.Left="28"
+                Canvas.Top="167"
+                Height="100"
+                Source="img/E_Portrait_1.png" />
             <wpf:ChromiumWebBrowser
                 Name="Browser"
+                Canvas.Left="28"
+                Canvas.Top="305"
                 Width="600"
                 Height="207"
-                Margin="29,0,28.333,0"
                 Address="https://www.youtube.com/embed/tuHqE3mQkQA" />
-            <WrapPanel>
-                <Button
-                    Width="75"
-                    Margin="50,0,0,0"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    Click="Button_Click"
-                    Content="Button" />
-                <Canvas>
-                    <Rectangle
-                        x:Name="gogogo"
-                        Canvas.Left="200"
-                        Width="96"
-                        Height="31"
-                        HorizontalAlignment="Center"
-                        Fill="#FFF4F4F5"
-                        Stroke="Black" />
-                </Canvas>
-            </WrapPanel>
-        </StackPanel>
+            <Button
+                Canvas.Left="553"
+                Canvas.Top="527"
+                Width="75"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Click="Button_Click"
+                Content="Button" />
+            <Rectangle
+                x:Name="gogogo"
+                Canvas.Left="444"
+                Canvas.Top="527"
+                Width="96"
+                Height="31"
+                HorizontalAlignment="Center"
+                Fill="#FFF4F4F5"
+                Stroke="Black" />
+        </Canvas>
     </Grid>
 </Window>

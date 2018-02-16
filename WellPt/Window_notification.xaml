@@ -16,6 +16,7 @@
     WindowStyle="None"
     mc:Ignorable="d"
     MouseUp="Window_MouseUp">
+    
     <Grid>
         <Rectangle
             Width="297"

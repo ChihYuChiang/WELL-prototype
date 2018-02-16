@@ -10,7 +10,9 @@
     Height="449.333"
     Loaded="Window_Loaded"
     WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
     mc:Ignorable="d">
+
     <Grid>
         <Rectangle
             x:Name="ui_mask"
@@ -19,6 +21,27 @@
             d:IsLocked="True"
             Fill="{DynamicResource Brush_BG}"
             Opacity="{Binding Ui_Mask_Opacity, Mode=OneWay}" />
+        <Grid>
+            <Rectangle
+                x:Name="ui_menuBg"
+                Height="22.5"
+                VerticalAlignment="Top"
+                Fill="{DynamicResource Brush_BaseColor_5}" />
+            <Button
+                Width="25"
+                Height="22.5"
+                Padding="1,1,1,1"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                VerticalContentAlignment="Center"
+                Background="{DynamicResource Brush_BaseColor_5}"
+                BorderBrush="{x:Null}"
+                Command="{Binding RCmd, Source={StaticResource Cmd_CloseWindow}}"
+                Content="X"
+                FontFamily="Arial Rounded MT Bold"
+                FontSize="14"
+                Opacity="0.5" />
+        </Grid>
         <Label
             Margin="288,166,0,0"
             HorizontalAlignment="Left"
