@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 using System.Windows.Data;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -16,7 +17,16 @@ using Microsoft.VisualBasic.FileIO;
 
 namespace WellPt
 {
-    public partial class App : Application {}
+    public partial class App : Application
+    {
+        public App()
+        {
+            CommandBinding binding = new CommandBinding(Command_CloseWindow.Obj, Command_CloseWindow.executed, Command_CloseWindow.canExecute);
+
+            //Register CommandBinding for all windows
+            CommandManager.RegisterClassCommandBinding(typeof(Window), binding);
+        }
+    }
 
 
 
@@ -135,6 +145,40 @@ namespace WellPt
             this.TypeSpeed = typeSpeed;
             this.TargetTextBlock = targetTextBlock;
             this.stateChagedHandler = eventHandler;
+        }
+    }
+
+
+
+
+    /*
+    ------------------------------------------------------------
+    Commands
+    ------------------------------------------------------------
+    */
+    public class Command_CloseWindow
+    {
+        ///--Field and property
+        public static RoutedCommand Obj { get; set; }
+
+
+        ///--Method
+        public static void executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            //MessageBox.Show("test");
+            Window.GetWindow(e.Source as Button).Close();
+        }
+
+        public static void canExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+
+        ///--Constructor
+        static Command_CloseWindow()
+        {
+            Obj = new RoutedCommand();
         }
     }
 

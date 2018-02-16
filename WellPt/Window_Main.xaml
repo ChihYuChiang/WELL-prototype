@@ -9,6 +9,7 @@
     Title="MainWindow"
     Width="525"
     Height="382.991"
+    AllowsTransparency="True"
     FontFamily="{DynamicResource MaterialDesignFont}"
     Loaded="Window_Loaded"
     TextElement.FontSize="13"
@@ -17,6 +18,7 @@
     TextOptions.TextFormattingMode="Ideal"
     TextOptions.TextRenderingMode="Auto"
     WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
     mc:Ignorable="d">
     <Window.Resources>
         <Storyboard x:Key="sbAnimateImage">
@@ -111,6 +113,14 @@
                     Width="100"
                     Source="img/M_grass_1.png" />
             </Canvas>
+            <Button
+                Height="19"
+                Margin="485,0,0.333,0"
+                Padding="1,1,1,1"
+                Content="X"
+                Command="{Binding Source={StaticResource Cmd_CloseWindow}, Path=Obj}"
+                FontFamily="Tw Cen MT"
+                FontSize="14" Background="{StaticResource Brush_BaseColor_1}" BorderBrush="{StaticResource Brush_BaseColor_1}" />
             <Button
                 Width="75"
                 Margin="73,184,0,0"

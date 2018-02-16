@@ -63,6 +63,9 @@
                 x:Key="Sb_TypeWriter"
                 x:Shared="false"
                 FillBehavior="Stop" />
+
+            <local:Command_CloseWindow x:Key="Cmd_CloseWindow" />
         </ResourceDictionary>
+
     </Application.Resources>
 </Application>
