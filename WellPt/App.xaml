@@ -17,6 +17,8 @@
             <SolidColorBrush x:Key="Brush_BaseColor_1" Color="#FFCFBCA2" />
             <SolidColorBrush x:Key="Brush_BaseColor_2" Color="#FFF15752" />
             <SolidColorBrush x:Key="Brush_BaseColor_3" Color="#FF6F9E3C" />
+            <SolidColorBrush x:Key="Brush_BaseColor_4" Color="#FF857765" />
+            <SolidColorBrush x:Key="Brush_BaseColor_5" Color="#FF2D2D30" />
 
             <Storyboard x:Key="Sb_FadeIn" x:Shared="false">
                 <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetProperty="Opacity">

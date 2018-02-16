@@ -77,7 +77,7 @@ namespace WellPt
             }
 
             ///Window fadeout and close
-            Command_CloseWindow.Obj?.Execute(null, this);
+            Command_CloseWindow.RCmd?.Execute(null, this);
         }
 
         private void Window_MouseUp(object sender, MouseButtonEventArgs e)

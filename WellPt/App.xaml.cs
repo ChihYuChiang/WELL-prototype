@@ -38,6 +38,7 @@ namespace WellPt
     */
     public struct Util
     {
+        ///--Method
         public static List<string[]> ParseCSV(StringReader text)
         {
             string[] fields;
@@ -154,6 +155,7 @@ namespace WellPt
     /*
     ------------------------------------------------------------
     Command class
+    - Define commands here and bind in app()
     ------------------------------------------------------------
     */
     public class Command_CloseWindow

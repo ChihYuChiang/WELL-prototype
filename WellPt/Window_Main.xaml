@@ -47,11 +47,32 @@
     <Grid>
         <Rectangle
             x:Name="ui_mask"
-            Panel.ZIndex="{Binding Path=WDataContainer.Ui_Mask_Zindex}"
+            Panel.ZIndex="{Binding WDataContainer.Ui_Mask_Zindex}"
             d:IsHidden="True"
             d:IsLocked="True"
             Fill="{DynamicResource Brush_BG}"
-            Opacity="{Binding Path=WDataContainer.Ui_Mask_Opacity}" />
+            Opacity="{Binding WDataContainer.Ui_Mask_Opacity}" />
+        <Grid x:Name="ui_menu">
+            <Rectangle
+                x:Name="ui_menuBg"
+                Height="22.5"
+                VerticalAlignment="Top"
+                Fill="{DynamicResource Brush_BaseColor_5}" />
+            <Button
+                Width="25"
+                Height="22.5"
+                Padding="1,1,1,1"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                VerticalContentAlignment="Center"
+                Background="{DynamicResource Brush_BaseColor_5}"
+                BorderBrush="{x:Null}"
+                Command="{Binding RCmd, Source={StaticResource Cmd_CloseWindow}}"
+                Content="X"
+                FontFamily="Arial Rounded MT Bold"
+                FontSize="14"
+                Opacity="0.5" />
+        </Grid>
         <StackPanel Margin="10">
             <Canvas>
                 <Image
@@ -75,8 +96,8 @@
                 </Image>
                 <Image
                     x:Name="ui_sun_1"
-                    Canvas.Left="{Binding ElementName=ui_elf_1, Path=(Canvas.Left)}"
-                    Canvas.Top="{Binding ElementName=ui_elf_1, Path=(Canvas.Top)}"
+                    Canvas.Left="{Binding (Canvas.Left), ElementName=ui_elf_1}"
+                    Canvas.Top="{Binding (Canvas.Top), ElementName=ui_elf_1}"
                     Width="20"
                     Panel.ZIndex="1"
                     RenderTransformOrigin="0.5,0.5"
@@ -114,14 +135,6 @@
                     Source="img/M_grass_1.png" />
             </Canvas>
             <Button
-                Height="19"
-                Margin="485,0,0.333,0"
-                Padding="1,1,1,1"
-                Content="X"
-                Command="{Binding Source={StaticResource Cmd_CloseWindow}, Path=RCmd}"
-                FontFamily="Tw Cen MT"
-                FontSize="14" Background="{StaticResource Brush_BaseColor_1}" BorderBrush="{StaticResource Brush_BaseColor_1}" />
-            <Button
                 Width="75"
                 Margin="73,184,0,0"
                 HorizontalAlignment="Left"
@@ -138,36 +151,36 @@
                             RadiusX="5"
                             RadiusY="5" />
                         <Label
-                            Name="ui_dItem_id"
+                            x:Name="ui_dItem_id"
                             VerticalContentAlignment="Center"
-                            Content="{Binding Path=DItem.Id, Converter={StaticResource Converter_QId}, FallbackValue='Q1 of 5'}"
+                            Content="{Binding DItem.Id, Converter={StaticResource Converter_QId}, FallbackValue=Q1 of 5}"
                             FontSize="10"
                             Foreground="White" />
                     </Grid>
                     <Label
-                        Name="ui_dItem_prompt"
-                        Content="{Binding Path=DItem.Prompt, FallbackValue='please enter a string'}"
+                        x:Name="ui_dItem_prompt"
+                        Content="{Binding DItem.Prompt, FallbackValue=please enter a string}"
                         FontWeight="Bold" />
                 </WrapPanel>
                 <RadioButton
-                    Name="ui_dItem_opt1"
+                    x:Name="ui_dItem_opt1"
                     Checked="RadioButton_Checked"
-                    Content="{Binding Path=DItem.Options, Converter={StaticResource Converter_QOption}, ConverterParameter=1, FallbackValue='Apple juice'}"
+                    Content="{Binding DItem.Options, ConverterParameter=1, Converter={StaticResource Converter_QOption}, FallbackValue=Apple juice}"
                     GroupName="ready" />
                 <RadioButton
-                    Name="ui_dItem_opt2"
+                    x:Name="ui_dItem_opt2"
                     Checked="RadioButton_Checked"
-                    Content="{Binding Path=DItem.Options, Converter={StaticResource Converter_QOption}, ConverterParameter=2, FallbackValue='Orange box'}"
+                    Content="{Binding DItem.Options, ConverterParameter=2, Converter={StaticResource Converter_QOption}, FallbackValue=Orange box}"
                     GroupName="ready" />
                 <RadioButton
-                    Name="ui_dItem_opt3"
+                    x:Name="ui_dItem_opt3"
                     Checked="RadioButton_Checked"
-                    Content="{Binding Path=DItem.Options, Converter={StaticResource Converter_QOption}, ConverterParameter=3, FallbackValue='Apple'}"
+                    Content="{Binding DItem.Options, ConverterParameter=3, Converter={StaticResource Converter_QOption}, FallbackValue=Apple}"
                     GroupName="ready" />
                 <RadioButton
-                    Name="ui_dItem_opt4"
+                    x:Name="ui_dItem_opt4"
                     Checked="RadioButton_Checked"
-                    Content="{Binding Path=DItem.Options, Converter={StaticResource Converter_QOption}, ConverterParameter=4, FallbackValue='Mango check out'}"
+                    Content="{Binding DItem.Options, ConverterParameter=4, Converter={StaticResource Converter_QOption}, FallbackValue=Mango check out}"
                     GroupName="ready" />
             </StackPanel>
         </StackPanel>
