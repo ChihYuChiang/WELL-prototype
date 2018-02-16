@@ -21,7 +21,7 @@ namespace WellPt
     {
         public App()
         {
-            CommandBinding binding = new CommandBinding(Command_CloseWindow.Obj, Command_CloseWindow.executed, Command_CloseWindow.canExecute);
+            CommandBinding binding = new CommandBinding(Command_CloseWindow.RCmd, Command_CloseWindow.executed, Command_CloseWindow.canExecute);
 
             //Register CommandBinding for all windows
             CommandManager.RegisterClassCommandBinding(typeof(Window), binding);
@@ -159,14 +159,17 @@ namespace WellPt
     public class Command_CloseWindow
     {
         ///--Field and property
-        public static RoutedCommand Obj { get; set; }
+        public static RoutedCommand RCmd { get; set; }
 
 
         ///--Method
         public static void executed(object sender, ExecutedRoutedEventArgs e)
         {
-            Window currentWindow = Window.GetWindow(e.Source as Button);
+            Window currentWindow = Window.GetWindow(e.Source as Control);
 
+            ///Window fadeout and close
+            ///By subscribing the sb.Completed event
+            ///Use different argument names to avoid conflict
             Storyboard sb = Application.Current.Resources["Sb_FadeOut"] as Storyboard;
             sb.Completed += (object _sender, EventArgs _e) => { currentWindow.Close(); };
             sb.Begin(currentWindow);
@@ -181,7 +184,7 @@ namespace WellPt
         ///--Constructor
         static Command_CloseWindow()
         {
-            Obj = new RoutedCommand();
+            RCmd = new RoutedCommand();
         }
     }
 

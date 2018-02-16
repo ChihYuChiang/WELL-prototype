@@ -118,7 +118,7 @@
                 Margin="485,0,0.333,0"
                 Padding="1,1,1,1"
                 Content="X"
-                Command="{Binding Source={StaticResource Cmd_CloseWindow}, Path=Obj}"
+                Command="{Binding Source={StaticResource Cmd_CloseWindow}, Path=RCmd}"
                 FontFamily="Tw Cen MT"
                 FontSize="14" Background="{StaticResource Brush_BaseColor_1}" BorderBrush="{StaticResource Brush_BaseColor_1}" />
             <Button

@@ -77,11 +77,7 @@ namespace WellPt
             }
 
             ///Window fadeout and close
-            ///By subscribing the sb.Completed event
-            ///Use different argument names to avoid conflict
-            Storyboard sb = appR["Sb_FadeOut"] as Storyboard;
-            sb.Completed += (object _sender, EventArgs _e) => { this.Close(); };
-            sb.Begin(this);
+            Command_CloseWindow.Obj?.Execute(null, this);
         }
 
         private void Window_MouseUp(object sender, MouseButtonEventArgs e)
