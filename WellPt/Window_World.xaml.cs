@@ -44,5 +44,10 @@ namespace WellPt
         {
             (appR["Sb_FadeIn"] as Storyboard).Begin(this);
         }
+
+        private void Button_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Command_DragWindow.RCmd?.Execute(null, this);
+        }
     }
 }

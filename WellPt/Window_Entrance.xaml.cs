@@ -85,7 +85,7 @@ namespace WellPt
 
         private void Button_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            this.DragMove();
+            Command_DragWindow.RCmd?.Execute(null, this);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

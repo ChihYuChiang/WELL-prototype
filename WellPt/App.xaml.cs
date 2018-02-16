@@ -21,10 +21,12 @@ namespace WellPt
     {
         public App()
         {
-            CommandBinding binding = new CommandBinding(Command_CloseWindow.RCmd, Command_CloseWindow.executed, Command_CloseWindow.canExecute);
-
+            CommandBinding cbinding_CloseWindow = new CommandBinding(Command_CloseWindow.RCmd, Command_CloseWindow.executed, Command_CloseWindow.canExecute);
+            CommandBinding cbinding_DragWindow = new CommandBinding(Command_DragWindow.RCmd, Command_DragWindow.executed, Command_DragWindow.canExecute);
+            
             //Register CommandBinding for all windows
-            CommandManager.RegisterClassCommandBinding(typeof(Window), binding);
+            CommandManager.RegisterClassCommandBinding(typeof(Window), cbinding_CloseWindow);
+            CommandManager.RegisterClassCommandBinding(typeof(Window), cbinding_DragWindow);
         }
     }
 
@@ -192,6 +194,27 @@ namespace WellPt
         }
     }
 
+    public class Command_DragWindow : CommandBase
+    {
+        ///--Field and property
+        public static RoutedCommand RCmd { get; set; }
+
+
+        ///--Method
+        public static new void executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            Window currentWindow = Window.GetWindow(e.Source as Control);
+            currentWindow.DragMove();
+        }
+
+
+        ///--Constructor
+        static Command_DragWindow()
+        {
+            RCmd = new RoutedCommand();
+        }
+    }
+
 
 
 
@@ -207,6 +230,7 @@ namespace WellPt
         public readonly static List<Data_StrItem> StrBook = initializeStrBook();
         private double ui_mask_opacity;
         private int ui_mask_zindex;
+        private SolidColorBrush ui_mask_fill;
 
         public double Ui_Mask_Opacity
         {
@@ -232,6 +256,18 @@ namespace WellPt
                 }
             }
         }
+        public SolidColorBrush Ui_Mask_Fill
+        {
+            get { return this.ui_mask_fill; }
+            set
+            {
+                if (this.ui_mask_fill != value)
+                {
+                    this.ui_mask_fill = value;
+                    this.NotifyPropertyChanged("Ui_Mask_Fill");
+                }
+            }
+        }
 
 
         ///--Method
@@ -251,7 +287,12 @@ namespace WellPt
 
 
         ///--Constructor
-        public Data_General() { Ui_Mask_Opacity = 0.1; Ui_Mask_Zindex = 0; }
+        public Data_General()
+        {
+            this.Ui_Mask_Opacity = 1;
+            this.Ui_Mask_Zindex = 0;
+            this.Ui_Mask_Fill = Application.Current.Resources["Brush_BG"] as SolidColorBrush;
+        }
 
 
         ///--Property change event handle

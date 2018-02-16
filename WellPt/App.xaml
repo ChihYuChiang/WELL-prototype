@@ -15,7 +15,8 @@
             </ResourceDictionary.MergedDictionaries>
 
             <!--  Brush  -->
-            <SolidColorBrush x:Key="Brush_BG" Color="#FF563815" />
+            <SolidColorBrush x:Key="Brush_BG" Color="#FFEEE7DF" />
+            <SolidColorBrush x:Key="Brush_BG_Dark" Color="#FF3E3C3A" />
             <SolidColorBrush x:Key="Brush_BaseColor_1" Color="#FFCFBCA2" />
             <SolidColorBrush x:Key="Brush_BaseColor_2" Color="#FFF15752" />
             <SolidColorBrush x:Key="Brush_BaseColor_3" Color="#FF6F9E3C" />

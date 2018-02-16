@@ -11,12 +11,12 @@
     AllowsTransparency="True"
     Background="Transparent"
     Loaded="Window_Loaded"
+    MouseUp="Window_MouseUp"
     ResizeMode="NoResize"
     WindowStartupLocation="CenterOwner"
     WindowStyle="None"
-    mc:Ignorable="d"
-    MouseUp="Window_MouseUp">
-    
+    mc:Ignorable="d">
+
     <Grid>
         <Rectangle
             Width="297"
@@ -86,9 +86,14 @@
                 RenderTransformOrigin="0.697,0.562" />
             <Rectangle
                 x:Name="ui_bIndicator"
+                Canvas.Left="267"
+                Canvas.Top="100"
                 Width="5"
                 Height="5"
-                Canvas.Left="267" Canvas.Top="100" RadiusX="1.5" RadiusY="1.5" Opacity="0" Fill="{DynamicResource Brush_BaseColor_3}" />
+                Fill="{DynamicResource Brush_BaseColor_3}"
+                Opacity="0"
+                RadiusX="1.5"
+                RadiusY="1.5" />
         </Canvas>
     </Grid>
 </Window>

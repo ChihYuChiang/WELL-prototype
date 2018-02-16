@@ -71,8 +71,9 @@ namespace WellPt
                 };
                 if (targetArray.Contains(w.GetType()))
                 {
-                    (w as Window_Main).WDataContainer.Ui_Mask_Opacity = 0.05;
+                    (w as Window_Main).WDataContainer.Ui_Mask_Opacity = 1;
                     (w as Window_Main).WDataContainer.Ui_Mask_Zindex = 0;
+                    (w as Window_Main).WDataContainer.Ui_Mask_Fill = appR["Brush_BG"] as SolidColorBrush;
                 }
             }
 

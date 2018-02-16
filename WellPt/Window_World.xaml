@@ -26,7 +26,8 @@
                 x:Name="ui_menuBg"
                 Height="22.5"
                 VerticalAlignment="Top"
-                Fill="{DynamicResource Brush_BaseColor_5}" />
+                Fill="{DynamicResource Brush_BaseColor_5}"
+                MouseDown="Button_MouseDown" />
             <Button
                 Width="25"
                 Height="22.5"

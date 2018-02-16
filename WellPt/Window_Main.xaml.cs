@@ -51,6 +51,11 @@ namespace WellPt
             (appR["Sb_HaloS"] as Storyboard).Begin(ui_sun_1);
         }
 
+        private void Button_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Command_DragWindow.RCmd?.Execute(null, this);
+        }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             (Resources["sbAnimateImage4"] as Storyboard).Begin();
@@ -66,7 +71,8 @@ namespace WellPt
             {
                 ///Primary window mask
                 WDataContainer.Ui_Mask_Zindex = 100;
-                WDataContainer.Ui_Mask_Opacity = 0.3;
+                WDataContainer.Ui_Mask_Opacity = 0.7;
+                WDataContainer.Ui_Mask_Fill = appR["Brush_BG_Dark"] as SolidColorBrush;
 
                 ///Open notification window
                 Window_Notification note = new Window_Notification(NotificationType.greeting) { Owner = this };
