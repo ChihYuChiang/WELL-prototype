@@ -83,6 +83,11 @@ namespace WellPt
             (this.Resources["sbAnimateImage"] as Storyboard).Begin();
         }
 
+        private void Button_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
+        }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Window_Main main = new Window_Main();

@@ -158,14 +158,21 @@ namespace WellPt
     - Define commands here and bind in app()
     ------------------------------------------------------------
     */
-    public class Command_CloseWindow
+    public abstract class CommandBase
+    {
+        ///--Method
+        public static void executed(object sender, ExecutedRoutedEventArgs e) { }
+        public static void canExecute(object sender, CanExecuteRoutedEventArgs e) { e.CanExecute = true; }
+    }
+
+    public class Command_CloseWindow : CommandBase
     {
         ///--Field and property
         public static RoutedCommand RCmd { get; set; }
 
 
         ///--Method
-        public static void executed(object sender, ExecutedRoutedEventArgs e)
+        public static new void executed(object sender, ExecutedRoutedEventArgs e)
         {
             Window currentWindow = Window.GetWindow(e.Source as Control);
 
@@ -175,11 +182,6 @@ namespace WellPt
             Storyboard sb = Application.Current.Resources["Sb_FadeOut"] as Storyboard;
             sb.Completed += (object _sender, EventArgs _e) => { currentWindow.Close(); };
             sb.Begin(currentWindow);
-        }
-
-        public static void canExecute(object sender, CanExecuteRoutedEventArgs e)
-        {
-            e.CanExecute = true;
         }
 
 
