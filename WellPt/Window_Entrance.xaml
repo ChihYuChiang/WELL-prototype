@@ -8,7 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:wpf="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
     Title="Window1"
-    Width="600"
+    Width="777.333"
     Height="600"
     AllowsTransparency="True"
     Background="{x:Null}"
@@ -37,7 +37,7 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="300" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Rectangle
@@ -69,9 +69,9 @@
                 FontSize="14"
                 Opacity="0.5" />
         </Grid>
-        <Canvas Grid.Column="1">
+        <Canvas Grid.Column="0">
             <Rectangle
-                Canvas.Left="-177"
+                Canvas.Left="20"
                 Canvas.Top="28"
                 Width="196"
                 Height="82"
@@ -79,8 +79,8 @@
                 RadiusX="5"
                 RadiusY="5" />
             <Rectangle
-                Canvas.Left="3"
-                Canvas.Top="73"
+                Canvas.Left="201"
+                Canvas.Top="74"
                 Width="20"
                 Height="20"
                 Fill="{DynamicResource Brush_BaseColor_1}"
@@ -96,14 +96,14 @@
             </Rectangle>
             <TextBlock
                 x:Name="txtb"
-                Canvas.Left="-167"
-                Canvas.Top="39"
+                Canvas.Left="31"
+                Canvas.Top="42"
                 TextWrapping="Wrap">
                 place holder hahahahahahaha
             </TextBlock>
             <Image
                 x:Name="ui_elf_1"
-                Canvas.Left="28"
+                Canvas.Left="230"
                 Canvas.Top="28"
                 Width="60"
                 RenderTransformOrigin="0.5,0.5"
@@ -112,35 +112,51 @@
                     <RotateTransform Angle="0" />
                 </Image.RenderTransform>
             </Image>
+        </Canvas>
+        <Canvas Grid.Column="1">
+            <Label
+                Canvas.Left="28"
+                Canvas.Top="32"
+                Content="Chapter II   Being Resilient to Negative Emotions"
+                FontFamily="Yu Gothic UI"
+                FontSize="14"
+                FontWeight="Bold"
+                Foreground="{DynamicResource Brush_BaseColor_4}" />
+            <StackPanel Canvas.Left="143" Canvas.Top="209">
+                <Label Content="Name Name" />
+                <Label Content="Name Name" />
+                <Label Content="Name Name" />
+                <Label Content="Name Name" />
+            </StackPanel>
             <Image
                 x:Name="ui_bgStory_1"
-                Canvas.Left="103"
-                Canvas.Top="39"
-                Width="255"
-                Height="102"
+                Canvas.Left="28"
+                Canvas.Top="60"
+                Width="419"
+                Height="129"
                 Stretch="UniformToFill" />
             <Image
                 x:Name="ui_bgStory_2"
-                Canvas.Left="103"
-                Canvas.Top="39"
+                Canvas.Left="{Binding ElementName=ui_bgStory_1, Path=(Canvas.Left)}"
+                Canvas.Top="{Binding ElementName=ui_bgStory_1, Path=(Canvas.Top)}"
                 Width="{Binding ElementName=ui_bgStory_1, Path=Width}"
                 Height="{Binding ElementName=ui_bgStory_1, Path=height}"
                 Stretch="UniformToFill" />
             <Image
                 x:Name="portrait"
                 Canvas.Left="28"
-                Canvas.Top="167"
+                Canvas.Top="209"
                 Height="100"
                 Source="img/E_Portrait_1.png" />
             <wpf:ChromiumWebBrowser
                 Name="Browser"
                 Canvas.Left="28"
-                Canvas.Top="305"
-                Width="338"
-                Height="207"
+                Canvas.Top="332"
+                Width="419"
+                Height="180"
                 Address="https://www.youtube.com/embed/tuHqE3mQkQA" />
             <Button
-                Canvas.Left="283"
+                Canvas.Left="372"
                 Canvas.Top="547"
                 Width="75"
                 HorizontalAlignment="Left"
@@ -149,7 +165,7 @@
                 Content="Button" />
             <Rectangle
                 x:Name="gogogo"
-                Canvas.Left="153"
+                Canvas.Left="251"
                 Canvas.Top="548"
                 Width="96"
                 Height="31"
