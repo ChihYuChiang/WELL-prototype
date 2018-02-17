@@ -80,6 +80,7 @@ namespace WellPt
             this.slide_change.IsEnabled = true;
 
             (appR["Sb_FadeIn"] as Storyboard).Begin(this);
+            (appR["Sb_ConRotateS"] as Storyboard).Begin(ui_elf_1);
             (this.Resources["sbAnimateImage"] as Storyboard).Begin();
         }
 
@@ -93,6 +94,11 @@ namespace WellPt
             Window_Main main = new Window_Main();
             main.Show();
             this.Close();
+        }
+
+        private void Button_Click1(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://www.google.com");
         }
     }
 }

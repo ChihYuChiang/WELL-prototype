@@ -37,7 +37,7 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="300                               " />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Rectangle
@@ -69,18 +69,20 @@
                 FontSize="14"
                 Opacity="0.5" />
         </Grid>
-        <Canvas Grid.Column="0">
+        <Canvas
+            Width="261"
+            Margin="-21,79,10,429"
+            HorizontalAlignment="Right">
             <Rectangle
-                Canvas.Left="20"
-                Canvas.Top="28"
+                Canvas.Top="11"
                 Width="196"
                 Height="82"
                 Fill="{DynamicResource Brush_BaseColor_1}"
                 RadiusX="5"
                 RadiusY="5" />
             <Rectangle
-                Canvas.Left="201"
-                Canvas.Top="74"
+                Canvas.Left="179"
+                Canvas.Top="64"
                 Width="20"
                 Height="20"
                 Fill="{DynamicResource Brush_BaseColor_1}"
@@ -96,15 +98,12 @@
             </Rectangle>
             <TextBlock
                 x:Name="txtb"
-                Canvas.Left="31"
-                Canvas.Top="42"
-                TextWrapping="Wrap">
-                place holder hahahahahahaha
-            </TextBlock>
+                Canvas.Left="10"
+                Canvas.Top="21"
+                TextWrapping="Wrap"><Run Text="place holder hahahahahahaha" /></TextBlock>
             <Image
                 x:Name="ui_elf_1"
-                Canvas.Left="230"
-                Canvas.Top="28"
+                Canvas.Left="201"
                 Width="60"
                 RenderTransformOrigin="0.5,0.5"
                 Source="img/M_elf_2.png">
@@ -117,21 +116,42 @@
             <Label
                 Canvas.Left="28"
                 Canvas.Top="32"
-                Content="Chapter II   Being Resilient to Negative Emotions"
                 FontFamily="Yu Gothic UI"
-                FontSize="14"
+                FontSize="16"
                 FontWeight="Bold"
-                Foreground="{DynamicResource Brush_BaseColor_4}" />
-            <StackPanel Canvas.Left="143" Canvas.Top="209">
-                <Label Content="Name Name" />
-                <Label Content="Name Name" />
-                <Label Content="Name Name" />
-                <Label Content="Name Name" />
+                Foreground="{DynamicResource Brush_BaseColor_4}">
+                <Label.Content>
+                    <WrapPanel>
+                        <Rectangle
+                            Width="15"
+                            Height="15"
+                            Margin="0,2,0,0"
+                            Fill="{DynamicResource Brush_BaseColor_3}"
+                            RadiusX="1.5"
+                            RadiusY="1.5" />
+                        <Label>Chapter II   Being Resilient to Negative Emotions</Label>
+                    </WrapPanel>
+                </Label.Content>
+            </Label>
+            <StackPanel
+                Canvas.Left="143"
+                Canvas.Top="209"
+                Background="{DynamicResource Brush_BaseColor_1}">
+                <Label
+                    Content="Name Name"
+                    FontSize="18"
+                    FontWeight="Bold" />
+                <Label
+                    Content="Position Position Position"
+                    FontSize="12"
+                    FontStyle="Italic" />
+                <Label Content="Experience Experience Experience Experience" FontSize="10" />
+                <Label Content="Expertise Expertise" FontSize="10" />
             </StackPanel>
             <Image
                 x:Name="ui_bgStory_1"
                 Canvas.Left="28"
-                Canvas.Top="60"
+                Canvas.Top="73"
                 Width="419"
                 Height="129"
                 Stretch="UniformToFill" />
@@ -155,6 +175,19 @@
                 Width="419"
                 Height="180"
                 Address="https://www.youtube.com/embed/tuHqE3mQkQA" />
+            <Button
+                Canvas.Left="372"
+                Canvas.Top="277"
+                Width="75"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Click="Button_Click1"
+                FontSize="11"
+                Padding="3, 3, 3, 3">
+                <Button.Content>
+                    <TextBlock>Learn More</TextBlock>
+                </Button.Content>
+            </Button>
             <Button
                 Canvas.Left="372"
                 Canvas.Top="547"

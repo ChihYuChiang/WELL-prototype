@@ -42,27 +42,37 @@
                 FontSize="14"
                 Opacity="0.5" />
         </Grid>
-        <Label
-            Margin="288,166,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Content="PASS"
-            FontWeight="Bold"
-            RenderTransformOrigin="0.5,0.5">
-            <Label.Effect>
-                <DropShadowEffect
-                    BlurRadius="2"
-                    Opacity="0.5"
-                    ShadowDepth="2" />
-            </Label.Effect>
-            <Label.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform />
-                    <SkewTransform />
-                    <RotateTransform Angle="-30" />
-                    <TranslateTransform />
-                </TransformGroup>
-            </Label.RenderTransform>
-        </Label>
+        <Canvas>
+
+            <Label
+                Canvas.Left="285"
+                Canvas.Top="68"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Content="PASS"
+                FontWeight="Bold"
+                RenderTransformOrigin="0.5,0.5">
+                <Label.Effect>
+                    <DropShadowEffect
+                        BlurRadius="2"
+                        Opacity="0.5"
+                        ShadowDepth="2" />
+                </Label.Effect>
+                <Label.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform />
+                        <SkewTransform />
+                        <RotateTransform Angle="-30" />
+                        <TranslateTransform />
+                    </TransformGroup>
+                </Label.RenderTransform>
+            </Label>
+            <Image
+                Canvas.Left="198"
+                Canvas.Top="152"
+                Width="243"
+                Height="291"
+                Source="img/M_tree_1.png" />
+        </Canvas>
     </Grid>
 </Window>
