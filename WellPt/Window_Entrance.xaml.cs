@@ -35,6 +35,7 @@ namespace WellPt
             InitializeComponent();
             this.DataContext = this.WDataContainer;
 
+            ///Initiate slide show storyboard
             string[] imgUris = { "img/M_cloud_1.png", "img/M_sun_1.png" };
             this.slide_imgCtrls = new Image[] { ui_bgStory_1, ui_bgStory_2 };
             this.slide_imgs = Util.GetImageFromUri(imgUris);

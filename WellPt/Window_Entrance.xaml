@@ -37,7 +37,7 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="300                               " />
+            <ColumnDefinition Width="300" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Rectangle
@@ -169,7 +169,7 @@
                 Height="100"
                 Source="img/E_Portrait_1.png" />
             <wpf:ChromiumWebBrowser
-                Name="Browser"
+                x:Name="ui_browser"
                 Canvas.Left="28"
                 Canvas.Top="332"
                 Width="419"
@@ -179,32 +179,41 @@
                 Canvas.Left="372"
                 Canvas.Top="277"
                 Width="75"
+                Padding="3,3,3,3"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 Click="Button_Click1"
-                FontSize="11"
-                Padding="3, 3, 3, 3">
+                FontSize="11">
                 <Button.Content>
                     <TextBlock>Learn More</TextBlock>
                 </Button.Content>
             </Button>
             <Button
-                Canvas.Left="372"
-                Canvas.Top="547"
-                Width="75"
+                x:Name="gogogo"
+                Canvas.Left="371"
+                Canvas.Top="531"
+                Width="76"
+                Height="48"
+                Padding="3,3,3,3"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
+                Background="{x:Null}"
+                BorderBrush="{x:Null}"
                 Click="Button_Click"
-                Content="Button" />
-            <Rectangle
-                x:Name="gogogo"
-                Canvas.Left="251"
-                Canvas.Top="548"
-                Width="96"
-                Height="31"
-                HorizontalAlignment="Center"
-                Fill="#FFF4F4F5"
-                Stroke="Black" />
+                Foreground="#DD000000">
+                <Button.Content>
+                    <WrapPanel>
+                        <Label VerticalContentAlignment="Center" FontSize="20" Foreground="{DynamicResource Brush_BG_Dark}">GO</Label>
+                        <Rectangle
+                            Width="15"
+                            Height="20"
+                            Margin="0,0,-1,0"
+                            VerticalAlignment="Center"
+                            Fill="{DynamicResource Brush_BaseColor_4}" />
+                        <Polygon Fill="{DynamicResource Brush_BaseColor_4}" Points="0,0 15,20, 0,40" />
+                    </WrapPanel>
+                </Button.Content>
+            </Button>
         </Canvas>
     </Grid>
 </Window>
