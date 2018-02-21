@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Media.Animation;
 using System.Windows.Threading;
+using CefSharp;
 
 namespace WellPt
 {
@@ -42,8 +43,11 @@ namespace WellPt
             this.slide_change = new DispatcherTimer();
             this.slide_change.Interval = new TimeSpan(0, 0, 3);
 
-            ///An anonymous function Subscribes the tick event
+            ///Subscribe the slide show tick event
             this.slide_change.Tick += (object sender, EventArgs e) => { this.PlaySlideShow(); };
+
+            ///Subscribe the browser frame loaded event
+            this.ui_browser.FrameLoadEnd += Browser_Frame_Loaded;
         }
 
 
@@ -100,6 +104,19 @@ namespace WellPt
         private void Button_Click1(object sender, RoutedEventArgs e)
         {
             System.Diagnostics.Process.Start("http://www.google.com");
+        }
+
+        ///Browser visible when loaded
+        private void Browser_Frame_Loaded(object sender, FrameLoadEndEventArgs e)
+        {
+            e.Frame.EvaluateScriptAsync("document.getElementById('player').value;").ContinueWith(response =>
+            {
+                if (response.Result.Success)
+                {
+                    ///Use dispatcher as the chromium browser uses a thread independent from the main UI
+                    this.Dispatcher.Invoke(() => { (appR["Sb_FadeIn"] as Storyboard).Begin(ui_browser); });
+                }
+            });
         }
     }
 }

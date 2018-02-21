@@ -174,7 +174,8 @@
                 Canvas.Top="332"
                 Width="419"
                 Height="180"
-                Address="https://www.youtube.com/embed/tuHqE3mQkQA" />
+                Address="https://www.youtube.com/embed/tuHqE3mQkQA"
+                Opacity="0" />
             <Button
                 Canvas.Left="372"
                 Canvas.Top="277"
@@ -203,7 +204,12 @@
                 Foreground="#DD000000">
                 <Button.Content>
                     <WrapPanel>
-                        <Label VerticalContentAlignment="Center" FontSize="20" Foreground="{DynamicResource Brush_BG_Dark}">GO</Label>
+                        <Label
+                            VerticalContentAlignment="Center"
+                            FontSize="20"
+                            Foreground="{DynamicResource Brush_BG_Dark}">
+                            GO
+                        </Label>
                         <Rectangle
                             Width="15"
                             Height="20"
