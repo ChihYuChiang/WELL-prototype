@@ -8,3 +8,4 @@ properties/
 packages/
 *.config
 *.csproj
+*.csv
