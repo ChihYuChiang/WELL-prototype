@@ -6,12 +6,14 @@ DT <- fread("D:\\OneDrive\\GitHub\\app-WELL_prototype\\others\\China_MetS.csv")
 nrow(DT)
 
 #Bmi categories
-DT[bmi >= 18.5 & bmi < 23, bmi_c := 1]
-DT[bmi >= 23 & bmi < 25, bmi_c := 2]
-DT[bmi >= 25 & bmi < 30, bmi_c := 3]
-DT[bmi >= 30 & bmi < 34, bmi_c := 4]
-DT[bmi >= 34, bmi_c := 5]
-DT$bmi_c
+DT[bmi < 18.5, bmi_c := 1]
+DT[bmi >= 18.5 & bmi < 23, bmi_c := 2]
+DT[bmi >= 23 & bmi < 25, bmi_c := 3]
+DT[bmi >= 25 & bmi < 27, bmi_c := 4]
+DT[bmi >= 27, bmi_c := 5]
+
+DT[!is.na(bmi_c)] %>% nrow()
+DT[bmi_c == 5] %>% nrow()
 
 
 "
@@ -23,12 +25,18 @@ Tabulate by bmi categories
 #>= 1.7 (tg)
 DT[, rt := tg >= 1.7]
 DT[, sum(rt, na.rm = TRUE), bmi_c]
+DT[rt == TRUE] %>% nrow()
+DT[1, hdl]
 
 
 #--Reduced HDL cholesterol
-#Male: < 1.03; female: < 1.29 (hdl)
-DT[, rhc := (gender_it == 4 & hdl < 1.03) | (gender_it == 5 & hdl < 1.29)]
+#Male: < 1.03; female: < 1.29 (gender_it 1, 2; hdl)
+DT[, rhc := (gender_it == 1 & hdl < 1.03) | (gender_it == 2 & hdl < 1.29)]
 DT[, sum(rhc, na.rm = TRUE), bmi_c]
+DT[rhc == TRUE] %>% nrow()
+DT[hdl == 1.03, hdl]
+DT[gender_it == 1 & hdl < 1.03] %>% nrow()
+DT[gender_it == 2 & hdl < 1.29] %>% nrow()
 
 
 #--Raised blood pressure
@@ -45,9 +53,10 @@ DT[, rfpg := fpg >= 5.6 | t2dm == 1]
 DT[, sum(rfpg, na.rm = TRUE), bmi_c]
 
 
-#--Central obesity
-#Male: waist >= 90; female: >= 80 (gender_it 4, 5; wc)
+#--Metabolic syndrome
+#Male: waist >= 90; female: >= 80 (gender_it 1, 2; wc)
 #BMI > 30kg/m2 (bmi)
 #Plus any of the 2 following factors
-DT[, co := (bmi > 30) | (((gender_it == 4 & wc >= 90) | (gender_it == 5 & wc >= 80)) & (rt + rhc + rbp + rfpg >= 2))]
-DT[, sum(co, na.rm = TRUE), bmi_c]
+DT[, ms := (bmi > 30) | (((gender_it == 1 & wc >= 90) | (gender_it == 2 & wc >= 80)) & (rt + rhc + rbp + rfpg >= 2))]
+DT[, sum(ms, na.rm = TRUE), bmi_c]
+DT[ms == TRUE] %>% nrow()
