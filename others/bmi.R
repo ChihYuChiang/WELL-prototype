@@ -60,3 +60,11 @@ DT[, sum(rfpg, na.rm = TRUE), bmi_c]
 DT[, ms := (bmi > 30) | (((gender_it == 1 & wc >= 90) | (gender_it == 2 & wc >= 80)) & (rt + rhc + rbp + rfpg >= 2))]
 DT[, sum(ms, na.rm = TRUE), bmi_c]
 DT[ms == TRUE] %>% nrow()
+DT[ms == TRUE & gender_it == 2] %>% nrow()
+
+#Tab ms by gender
+DT[bmi_c == 2, mean(ms, na.rm=TRUE), gender_it]
+dcast(DT[bmi_c == 2, .N, .(gender_it, ms)], gender_it ~ ms, value.var="N")
+
+DT[gender_it == 1, mean(ms, na.rm=TRUE), bmi_c]
+DT[gender_it == 2, mean(ms, na.rm=TRUE), bmi_c]
